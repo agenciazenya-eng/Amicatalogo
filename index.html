@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mueblería AMI — Catálogo</title>
+<style>
+  :root {
+    --verde: #b5c49a;
+    --marino: #1e2d3d;
+    --rojo: #e63232;
+    --crema: #f7f4ef;
+    --gris: #6b7280;
+    --borde: #e5e7eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--crema); color: var(--marino); }
+
+  /* HEADER */
+  header {
+    background: var(--marino);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-text { color: white; }
+  .logo-text span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; opacity: .6; display: block; }
+  .logo-text strong { font-size: 26px; font-weight: 900; color: white; letter-spacing: -1px; }
+  .logo img { height: 46px; background: white; border-radius: 8px; padding: 4px 10px; display: block; }
+  .wa-header-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--marino) 0%, #2d4a6b 100%);
+    color: white;
+    text-align: center;
+    padding: 56px 24px 48px;
+  }
+  .hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 900; margin-bottom: 12px; }
+  .hero h1 span { color: var(--rojo); }
+  .hero p { opacity: .75; font-size: 16px; max-width: 500px; margin: 0 auto 28px; }
+  .precio-toggle {
+    display: inline-flex;
+    background: rgba(255,255,255,.1);
+    border-radius: 50px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .precio-toggle button {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,.7);
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .2s;
+  }
+  .precio-toggle button.active {
+    background: var(--rojo);
+    color: white;
+  }
+
+  /* FILTROS */
+  .filtros {
+    background: white;
+    border-bottom: 1px solid var(--borde);
+    padding: 0 24px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .filtros::-webkit-scrollbar { display: none; }
+  .filtro-btn {
+    white-space: nowrap;
+    background: none;
+    border: none;
+    padding: 14px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--gris);
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+    font-weight: 500;
+  }
+  .filtro-btn.active, .filtro-btn:hover {
+    color: var(--rojo);
+    border-bottom-color: var(--rojo);
+  }
+
+  /* GRID */
+  .catalogo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+  .categoria-titulo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--marino);
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--rojo);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .categoria-titulo:first-child { margin-top: 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    transition: transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    background: #f0ede8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--rojo);
+  }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .card-nombre { font-size: 15px; font-weight: 700; color: var(--marino); line-height: 1.3; }
+  .card-desc { font-size: 13px; color: var(--gris); line-height: 1.5; flex: 1; }
+  .card-precios { margin-top: 8px; }
+  .precio-contado {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--marino);
+  }
+  .precio-cuotas {
+    font-size: 13px;
+    color: var(--gris);
+    margin-top: 2px;
+  }
+  .precio-cuotas span { font-weight: 700; color: var(--rojo); }
+  .precio-destacado {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--rojo);
+  }
+  .precio-ref {
+    font-size: 12px;
+    color: var(--gris);
+    text-decoration: line-through;
+  }
+  .card-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    border-top: 1px solid #e5e7eb;
+    transition: background .2s;
+  }
+  .card-wa:hover { background: #1ebe5a; }
+
+  /* CARD ACTIONS */
+  .card-actions { display: flex; border-top: 1px solid var(--borde); }
+  .card-agregar {
+    flex: 1;
+    padding: 12px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background: var(--crema);
+    color: var(--marino);
+    transition: background .2s, color .2s;
+    border-right: 1px solid var(--borde);
+  }
+  .card-agregar:hover { background: #fde8e8; color: var(--rojo); }
+  .card-agregar.en-carrito { background: var(--rojo); color: white; }
+  .card-wa { flex: 1.4; border-top: none; }
+
+  /* CARRITO FLOTANTE */
+  .carrito-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    background: var(--marino);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 22px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    transition: transform .2s;
+  }
+  .carrito-float:hover { transform: scale(1.05); }
+  .carrito-float.oculto { display: none; }
+  .carrito-badge {
+    background: var(--rojo);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+  }
+
+  /* PANEL CARRITO */
+  .carrito-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 300;
+  }
+  .carrito-overlay.abierto { display: block; }
+  .carrito-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 100%;
+    max-width: 420px;
+    height: 100%;
+    background: white;
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    transition: right .3s ease;
+    box-shadow: -4px 0 24px rgba(0,0,0,.2);
+  }
+  .carrito-panel.abierto { right: 0; }
+  .carrito-header {
+    background: var(--marino);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .carrito-header h3 { font-size: 18px; font-weight: 800; }
+  .carrito-cerrar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .carrito-items { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .carrito-vacio { text-align: center; padding: 60px 20px; color: var(--gris); font-size: 15px; }
+  .carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--crema);
+    border-radius: 10px;
+  }
+  .carrito-item-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .carrito-item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .carrito-item-info { flex: 1; }
+  .carrito-item-nombre { font-size: 13px; font-weight: 700; color: var(--marino); line-height: 1.3; }
+  .carrito-item-precio { font-size: 12px; color: var(--gris); margin-top: 2px; }
+  .carrito-item-quitar {
+    background: none;
+    border: none;
+    color: var(--gris);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+  .carrito-item-quitar:hover { color: var(--rojo); }
+  .carrito-footer {
+    padding: 20px;
+    border-top: 1px solid var(--borde);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .carrito-total { font-size: 14px; color: var(--gris); text-align: center; }
+  .carrito-total strong { color: var(--marino); font-size: 16px; }
+  .btn-consultar-todo {
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background .2s;
+  }
+  .btn-consultar-todo:hover { background: #1ebe5a; }
+  .btn-vaciar {
+    background: none;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    color: var(--gris);
+    cursor: pointer;
+  }
+  .btn-vaciar:hover { color: var(--rojo); border-color: var(--rojo); }
+
+  /* SIN PRECIO */
+  .sin-precio { font-size: 14px; color: var(--verde); font-weight: 700; }
+
+  /* FOOTER */
+  footer {
+    background: var(--marino);
+    color: white;
+    text-align: center;
+    padding: 32px 24px;
+    margin-top: 60px;
+  }
+  footer .logo-footer { font-size: 28px; font-weight: 900; color: var(--verde); }
+  footer p { opacity: .6; margin-top: 8px; font-size: 14px; }
+  footer .wa-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  /* HOME — GRILLA DE CATEGORÍAS */
+  .home-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .home-cat {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 16/10;
+    background: #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  .home-cat img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .home-cat:hover img { transform: scale(1.06); }
+  .home-cat-emoji { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:64px; }
+  .home-cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(30,45,61,.82) 0%, rgba(30,45,61,.25) 55%, rgba(30,45,61,.05) 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 18px 20px;
+  }
+  .home-cat-overlay span { color: white; font-size: 21px; font-weight: 800; text-shadow: 0 1px 6px rgba(0,0,0,.5); line-height:1.15; }
+  .home-cat-overlay small { color: rgba(255,255,255,.9); font-size: 12px; margin-top: 4px; font-weight:600; }
+  .home-intro { max-width:1200px; margin:0 auto; padding: 24px 16px 0; }
+  .home-intro h2 { font-size: 20px; color: var(--marino); font-weight:800; }
+  .home-intro p { color: var(--gris); font-size:14px; margin-top:4px; }
+  .volver-btn {
+    background:none; border:none; color: var(--rojo); font-weight:700; font-size:14px;
+    cursor:pointer; padding:0 0 18px; display:inline-flex; align-items:center; gap:6px;
+  }
+  .volver-btn:hover { text-decoration: underline; }
+
+  /* BUSCADOR */
+  .buscador-wrap { background: white; padding: 12px 16px 0; }
+  .buscador {
+    max-width: 620px; margin: 0 auto;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--crema); border: 1px solid var(--borde);
+    border-radius: 50px; padding: 10px 16px;
+    color: var(--gris);
+  }
+  .buscador:focus-within { border-color: var(--rojo); }
+  .buscador input {
+    flex: 1; border: none; background: none; outline: none;
+    font-size: 15px; color: var(--marino); font-family: inherit;
+  }
+  .buscador-clear { background:none; border:none; font-size:20px; color:var(--gris); cursor:pointer; line-height:1; padding:0 4px; }
+
+  /* SELECTOR COLCHÓN / SOMMIER + MEDIDA */
+  .seg { display:flex; background:var(--crema); border-radius:10px; padding:4px; gap:4px; margin-top:4px; }
+  .seg button {
+    flex:1; border:none; background:none; cursor:pointer;
+    padding:8px 6px; border-radius:8px; font-size:12.5px; font-weight:700;
+    color:var(--gris); transition:all .15s; font-family:inherit;
+  }
+  .seg button.active { background:var(--rojo); color:white; }
+  .medidas { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .medidas button {
+    border:1px solid var(--borde); background:white; cursor:pointer;
+    padding:6px 10px; border-radius:8px; font-size:12px; font-weight:600;
+    color:var(--marino); transition:all .15s; font-family:inherit; line-height:1.1;
+  }
+  .medidas button small { display:block; font-size:9.5px; color:var(--gris); font-weight:500; }
+  .medidas button.active { border-color:var(--rojo); background:#fde8e8; color:var(--rojo); }
+  .medidas button.active small { color:var(--rojo); }
+
+  /* GALERÍA MULTIFOTO */
+  .card-img.galeria { position:relative; }
+  .card-img.galeria img { position:absolute; inset:0; opacity:0; transition:opacity .25s; }
+  .card-img.galeria img.activa { opacity:1; position:relative; }
+  .gal-nav {
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:30px; height:30px; border-radius:50%; border:none; cursor:pointer;
+    background:rgba(255,255,255,.85); color:var(--marino); font-size:18px; line-height:1;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.2); z-index:2;
+  }
+  .gal-nav.prev { left:8px; } .gal-nav.next { right:8px; }
+  .gal-dots { position:absolute; bottom:8px; left:0; right:0; display:flex; justify-content:center; gap:5px; z-index:2; }
+  .gal-dots span { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.6); }
+  .gal-dots span.on { background:white; }
+
+  @media (max-width: 600px) {
+    header { padding: 12px 14px; }
+    .logo img { height: 38px; }
+    .wa-header-btn { padding: 8px 14px; font-size: 13px; }
+    .hero { padding: 32px 18px 28px; }
+    .hero p { font-size: 14px; margin-bottom: 20px; }
+    .filtros { padding: 0 12px; }
+    .filtro-btn { padding: 12px 12px; font-size: 13px; }
+    .catalogo { padding: 20px 12px; }
+    .categoria-titulo { font-size: 18px; margin: 28px 0 16px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .card-body { padding: 11px; gap: 6px; }
+    .card-nombre { font-size: 13px; }
+    .card-desc { font-size: 11.5px; line-height: 1.4; }
+    .precio-contado, .precio-destacado { font-size: 17px; }
+    .precio-cuotas { font-size: 11px; }
+    .card-agregar, .card-wa { padding: 10px 6px; font-size: 12px; }
+    .home-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px 12px; }
+    .home-cat { aspect-ratio: 1/1; border-radius: 12px; }
+    .home-cat-overlay { padding: 12px; }
+    .home-cat-overlay span { font-size: 14px; }
+    .home-cat-overlay small { font-size: 10.5px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="filtrar('inicio')" style="cursor:pointer">
+    <img src="imgs/logo.png" alt="Mueblería AMI">
+  </div>
+  <a class="wa-header-btn" href="https://wa.me/5493516637193?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consultar
+  </a>
+</header>
+
+<div class="hero">
+  <h1>Amoblá tu hogar<br><span>con estilo y precio</span></h1>
+  <p>Entrega inmediata · Envíos a todo Córdoba · Personalizá tu mueble</p>
+  <div class="precio-toggle">
+    <button class="active" onclick="setModo('contado')">Contado</button>
+    <button onclick="setModo('3c')">3 cuotas</button>
+    <button onclick="setModo('6c')">6 cuotas</button>
+    <button onclick="setModo('12c')">12 cuotas</button>
+  </div>
+</div>
+
+<div class="buscador-wrap">
+  <div class="buscador">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="buscador" type="search" placeholder="Buscar producto…" oninput="buscar(this.value)" autocomplete="off">
+    <button class="buscador-clear" id="buscadorClear" onclick="limpiarBusqueda()" style="display:none">×</button>
+  </div>
+</div>
+
+<div class="filtros" id="filtros">
+  <button class="filtro-btn active" data-key="inicio" onclick="filtrar('inicio')">🏠 Inicio</button>
+  <button class="filtro-btn" data-key="combos-mesas" onclick="filtrar('combos-mesas')">Combos Mesas y Sillas</button>
+  <button class="filtro-btn" data-key="sillas" onclick="filtrar('sillas')">Sillas</button>
+  <button class="filtro-btn" data-key="mesas" onclick="filtrar('mesas')">Mesas</button>
+  <button class="filtro-btn" data-key="racks-tv" onclick="filtrar('racks-tv')">Racks / TV</button>
+  <button class="filtro-btn" data-key="living" onclick="filtrar('living')">Living, Sofás y Sillones</button>
+  <button class="filtro-btn" data-key="placares" onclick="filtrar('placares')">Placares</button>
+  <button class="filtro-btn" data-key="comodas" onclick="filtrar('comodas')">Cómodas</button>
+  <button class="filtro-btn" data-key="cuchetas" onclick="filtrar('cuchetas')">Cuchetas</button>
+  <button class="filtro-btn" data-key="descanso" onclick="filtrar('descanso')">Colchones y Sommiers</button>
+  <button class="filtro-btn" data-key="cocina" onclick="filtrar('cocina')">Cocina</button>
+  <button class="filtro-btn" data-key="escritorios" onclick="filtrar('escritorios')">Escritorios</button>
+  <button class="filtro-btn" data-key="infantil" onclick="filtrar('infantil')">Línea Infantil</button>
+</div>
+
+<div class="catalogo" id="catalogo"></div>
+
+<footer>
+  <div class="logo-footer">AMI</div>
+  <p>Mueblería AMI · Catamarca 127, Centro, Córdoba Capital</p>
+  <p style="margin-top:6px">Lun–Sáb 9–20hs</p>
+  <a class="wa-footer" href="https://wa.me/5493516637193?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Escribinos por WhatsApp
+  </a>
+</footer>
+
+<!-- CARRITO FLOTANTE -->
+<button class="carrito-float oculto" id="carritoBtn" onclick="abrirCarrito()">
+  🛒 Mi consulta
+  <span class="carrito-badge" id="carritoBadge">0</span>
+</button>
+
+<div class="carrito-overlay" id="carritoOverlay" onclick="cerrarCarrito()"></div>
+<div class="carrito-panel" id="carritoPanel">
+  <div class="carrito-header">
+    <h3>🛒 Mi consulta</h3>
+    <button class="carrito-cerrar" onclick="cerrarCarrito()">×</button>
+  </div>
+  <div class="carrito-items" id="carritoItems"></div>
+  <div class="carrito-footer" id="carritoFooter" style="display:none">
+    <div class="carrito-total" id="carritoTotal"></div>
+    <button class="btn-consultar-todo" onclick="consultarTodo()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consultar todo por WhatsApp
+    </button>
+    <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar lista</button>
+  </div>
+</div>
+
+<script>
+const WA = '5493516637193';
+const RECARGO_3C = 0.25;
+const RECARGO_6C = 0.35;
+const RECARGO_12C = 0.60;
+let modoActual = 'contado';
+
+const productos = [
+  // COMBOS MESAS Y SILLAS
+  { id:1, categoria:'combos-mesas', nombre:'Combo Mesa y 4 Sillas Económico', precio:206000, emoji:'🪑', desc:'Mesa melamina pino L + 4 sillas apilables. Colores a elección. Entrega inmediata. Retiro o envío.' },
+  { id:2, categoria:'combos-mesas', nombre:'Combo de Comedor (Mesa + Sillas)', precio:244000, emoji:'🍽️', desc:'Mesa pino L 1,40m + 4 sillas Tulip madera haya. Entrega inmediata, planes con tarjeta, envíos.' },
+  { id:3, categoria:'combos-mesas', nombre:'Mesa y Sillas Caño Standard', precio:193000, emoji:'🪑', desc:'Mesa 70×70 pino + 4 sillas Milan o Windsor. Personalizá colores.' },
+
+  // SILLAS
+  { id:6, categoria:'sillas', nombre:'Silla Roma / Master (por unidad)', precio:30000, emoji:'🪑', desc:'Silla apilable Roma o Master. Polipropileno + fibra de vidrio. Soporta 150kg. Interior y exterior. Blancas, negras o gris. Precio por unidad.' },
+  { id:7, categoria:'sillas', nombre:'Silla Tulip (por unidad)', precio:37000, emoji:'🪑', desc:'Silla Tulip madera haya maciza. Polipropileno + fibra de vidrio. 82cm alto × 50cm ancho. Blancas, negras o gris. Precio por unidad.' },
+  { id:8, categoria:'sillas', nombre:'Silla Eames (por unidad)', precio:30000, emoji:'🪑', desc:'Silla Eames madera haya. Disponible en blanca, negra, rosa, amarillo, azul y verde aqua. Precio por unidad.' },
+  { id:306, categoria:'sillas', nombre:'Sillas Bari Eco x6 (Promo)', precio:199000, emoji:'🪑', desc:'Juego de 6 sillas. Patas de caño reforzado con travesaños · Tapizado en tela estampada. Precio por las 6 sillas.' },
+  { id:307, categoria:'sillas', nombre:'Sillas Vogue x6', precio:289000, emoji:'🪑', desc:'Juego de 6 sillas. Estructura de caño cuadrado negro · Respaldo alto · Tapizado en tela estampada. Precio por las 6 sillas.' },
+  { id:305, categoria:'sillas', nombre:'Butaca Conrad', precio:139000, emoji:'🛋️', desc:'Butaca individual estilo tub, tapizado en tela. Precio por unidad. Consultá colores disponibles.' },
+
+  // MESAS
+  { id:9, categoria:'mesas', nombre:'Mesa Cuadrada 1.20×1.20 + 6 Sillas de Madera', precio:null, emoji:'🪵', desc:'Combo comedor para 6 personas. Mesa 120×120cm en negro mate con base central. 6 sillas con respaldo tapizadas (color a elección). Consultá precio.' },
+  { id:44, categoria:'mesas', nombre:'Mesa Eames 1.20', precio:180000, emoji:'🪵', desc:'Mesa 1,20m tapa MDF laqueada, patas madera haya, topes antideslizantes. Color negro o blanco.' },
+  { id:45, categoria:'mesas', nombre:'Mesa Ratona Retro', precio:25000, emoji:'🪵', desc:'Mesa ratona 40×60cm. Tapa melamina, patas pino estilo retro. Color blanco o negro.' },
+
+  // RACKS Y TV
+  { id:10, categoria:'racks-tv', nombre:'Rack 558 (Modular TV 1.92m)', precio:239000, emoji:'📺', desc:'1,92m × 1,66m × 0,44m. Módulos con cajón y puertas. Hasta 55". Se entrega desarmado. Disponible en varios colores (nogal, nogal/negro y más).' },
+  { id:11, categoria:'racks-tv', nombre:'Rack 557 (Modular TV 1.80m)', precio:229000, emoji:'📺', desc:'Rack 1,78m × 0,67m × 0,45m. Amplio espacio de guardado. Ideal para livings modernos.' },
+  { id:12, categoria:'racks-tv', nombre:'Aparador 4 Puertas', precio:169000, emoji:'🪵', desc:'Aparador 1,57m × 0,91m × 0,45m. 4 puertas. Mueble multiuso para comedor o living. Consultá colores disponibles.' },
+  { id:41, categoria:'racks-tv', nombre:'Modular TV 2.30m', precio:367000, emoji:'📺', desc:'Modular TV 2300 · 1,88m alto × 2,30m ancho × 0,42m prof. Gran capacidad de guardado. Hasta 75".' },
+  { id:42, categoria:'racks-tv', nombre:'Rack Modular con 4 Puertas', precio:233000, emoji:'📺', desc:'Rack modular 1,51m × 1,82m × 0,36m. Cajón con correderas metálicas + 4 puertas. Hasta 43".' },
+  { id:43, categoria:'cocina', nombre:'Mueble Microondas', precio:89000, emoji:'🍳', desc:'Gabinete microondas 0,60m × 1,21m × 0,44m. 2 puertas y 2 estantes. Espacio para microondas.' },
+
+  // LIVING Y SOFÁS
+  { id:14, categoria:'living', nombre:'Esquinero Paris 1.84×1.84', precio:371000, emoji:'🛋️', desc:'Esquinero 1,84×1,84×90cm. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate, gris claro.' },
+  { id:16, categoria:'living', nombre:'Esquinero Bassic 1.70×1.70', precio:344000, emoji:'🛋️', desc:'Esquinero 1,70×1,70×90cm. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
+
+  // PLACARES
+  { id:17, categoria:'placares', nombre:'Placard Fortaleza 3 Puertas', precio:187000, emoji:'🚪', desc:'Alto 1,80m · Ancho 93cm · Prof 47cm. 3 puertas + 2 cajones. Barral de aluminio. Colores: golden oregon, grafito teca.' },
+  { id:18, categoria:'placares', nombre:'Combo Placard + Cómoda Infantil Fortaleza', precio:320000, emoji:'🎀', desc:'SET INFANTIL: Placard blanco con puertas rosas. 3 estantes + barra de colgado. Cómoda con 4 cajones amplios. Puertas batientes suaves.' },
+  { id:19, categoria:'placares', nombre:'Placard Platinum BASE 3 Puertas', precio:154000, emoji:'🚪', desc:'Alto 1,85m · Ancho 92cm · Prof 0,48m. 3 puertas + 2 cajones. Barral de aluminio. Colores: blanco, gris andino, savanna, roble antiguo.' },
+  { id:20, categoria:'placares', nombre:'Placard Corredizo MAX 1.21×2.22', precio:276000, emoji:'🚪', desc:'2 puertas corredizas. Alto 2,22m · Ancho 1,21m · Prof 0,55m. Correderas metálicas + barral aluminio. Colores: blanco, gris andino.' },
+  { id:46, categoria:'placares', nombre:'Placard Platinum BASE 2 Puertas', precio:116000, emoji:'🚪', desc:'Alto 1,85m · Ancho 62cm · Prof 0,48m. 2 puertas + 2 cajones. Disponible en varios colores.' },
+
+  // CÓMODAS Y CHIFONIER
+  { id:21, categoria:'comodas', nombre:'Cajonera Platinum 6 Cajones', precio:140000, emoji:'🗄️', desc:'Alto 1,16m · Ancho 0,62m · Prof 0,47m. 6 cajones con correderas metálicas. Colores: gris andino, savanna, blanco.' },
+  { id:22, categoria:'comodas', nombre:'Arcón Multifunción', precio:154000, emoji:'🗄️', desc:'Alto 1,20m · Ancho 0,93m · Prof 0,36m. 3 cajones + 2 puertas + 5 estantes. Revestido por dentro. Colores: gris andino, savanna, blanco.' },
+  { id:23, categoria:'comodas', nombre:'Chifonier 4 Cajones + 1 Puerta', precio:154000, emoji:'🗄️', desc:'Alto 1,02m · Ancho 1,00m. 4 cajones con correderas + 1 puerta + 3 estantes. Revestido por dentro. Colores: gris andino, savanna, blanco.' },
+  { id:24, categoria:'comodas', nombre:'Cómodas y Chifonier — varios modelos', precio:null, emoji:'🗄️', desc:'Consultanos por el modelo que buscás. Gran variedad disponible.' },
+
+  // CUCHETAS
+  { id:25, categoria:'cuchetas', nombre:'Diván Cama — 2 Camas en 1', precio:142000, emoji:'🛏️', desc:'2,00m × 0,60m × 0,88m. 2 camas en una. Práctico y funcional. Consultá colores disponibles.' },
+  { id:26, categoria:'cuchetas', nombre:'Cucheta de Pino Misionero Reforzada', precio:155000, emoji:'🛏️', desc:'Estructura resistente de excelente calidad. Ideal para aprovechar espacios.' },
+  { id:27, categoria:'cuchetas', nombre:'Cucheta Funcional Platinum Triple', precio:327000, emoji:'🛏️', desc:'2,33m × 1,55m × 0,90m. 3 camas + gabinete + cajón + repisa. La solución ideal para habitaciones compartidas.' },
+
+  // SOMMIER
+  { id:250, categoria:'descanso', nombre:"Combo Infantil (colchón + base)", precio:99000, emoji:'💤', desc:"Combo infantil 1 plaza: colchón + base/sommier. Respaldo tapizado aparte (+$40.000). Ideal para dormitorio de nenes. Consultá colores disponibles." },
+
+  // COCINA
+  { id:32, categoria:'cocina', nombre:'Combo Cocina Línea Turin 1.20m', precio:322000, emoji:'🍳', desc:'Alacena 1,20m + bajo mesada 1,20m + marmolina. Melamina blanca por dentro, guías metálicas. Colores: blanco, Nebraska, Hickory blanco.' },
+  { id:33, categoria:'cocina', nombre:'Despensero 2 Puertas', precio:98000, emoji:'🍳', desc:'Alto 1,83m · Ancho 0,61m · Prof 0,31m. Melamina 15. 5 estantes. Forrado por dentro. Color blanco.' },
+  { id:34, categoria:'cocina', nombre:'Alacena + Bajo Mesada Turin 1.40m', precio:229000, emoji:'🍳', desc:'Alacena 1,40m ($66.000) + bajo mesada 1,40m ($99.000). Melamina. Con o sin marmolina. Colores a elección.' },
+
+  // ESCRITORIOS
+  { id:35, categoria:'escritorios', nombre:'Escritorio 1m con 2 Cajones y Llave', precio:111000, emoji:'📖', desc:'1,00m × 0,74m × 0,70m. 2 cajones con cerradura. Superior con llave. Combo escritorio + biblioteca disponible.' },
+  { id:36, categoria:'escritorios', nombre:'Biblioteca Eco 5 Niveles', precio:67000, emoji:'📖', desc:'0,61m × 1,70m × 0,25m. 5 estantes. Melamina. Consultá colores disponibles.' },
+  { id:37, categoria:'escritorios', nombre:'Escritorio Notebook', precio:74000, emoji:'📖', desc:'1,00m × 0,75m × 0,45m. 1 estante + 1 cajón. Diseño compacto ideal para home office.' },
+  { id:38, categoria:'escritorios', nombre:'Escritorios — Varios Modelos', precio:null, emoji:'📖', desc:'Distintos modelos disponibles. Consultanos por el que más te guste.' },
+  { id:39, categoria:'escritorios', nombre:'Gabinete Multiuso / Despensero', precio:89000, emoji:'🗃️', desc:'0,62m × 1,53m × 0,31m. 2 puertas + 3 estantes. Forrado por dentro. Ideal para distintos ambientes.' },
+
+  // LÍNEA INFANTIL
+  { id:40, categoria:'infantil', nombre:'Mesa de Luz Flotante', precio:38000, emoji:'🌙', desc:'Alto 0,32m · Ancho 0,45m · Prof 0,33m. 1 cajón + 1 estante. Revestida por dentro. Colores: blanco, hickory negro/blanco, pino blanco.' },
+
+  // COMBOS MESAS Y SILLAS — nuevos
+  { id:50, categoria:'combos-mesas', nombre:'Mesa Redonda Vidrio + 4 Sillas', precio:269000, emoji:'🪑', desc:'Patas madera haya maciza · Hierros reforzados · Tapa vidrio templado · Sillas a elección: Eames, Tulip, Milan o Windsor. 1,00m desde $269.000 · 1,20m desde $290.000.' },
+  { id:51, categoria:'combos-mesas', nombre:'Mesa Redonda 0.90 + 4 Sillas', precio:193000, emoji:'🪑', desc:'Base y patas pino · Tapa melamina negra o blanca · 4 sillas a elección: Eames, Tulip, Milan, Windsor, Roma o Master. Desde $193.000.' },
+  { id:52, categoria:'combos-mesas', nombre:'Mesa Tulip + 4 Sillas', precio:238000, emoji:'🪑', desc:'Tapa melamina 18mm · Patas pino escandinavo · 4 sillas a elección. 1,20m desde $238.000 · 1,40m desde $266.000.' },
+  { id:53, categoria:'combos-mesas', nombre:'Mesa Milan 1.20 + 4 Sillas', precio:287000, emoji:'🪑', desc:'Tapa MDF lacada · 4 sillas a elección: Tulip $308.000 · Milan o Windsor $297.000 · Eames $287.000. Colores negro o blanco.' },
+
+  // SILLAS — nuevas
+  { id:54, categoria:'sillas', nombre:'Sillas Milan x6', precio:202000, emoji:'🪑', desc:'Pack 6 sillas Milan. Polipropileno + fibra de vidrio · Patas madera haya · 78cm alto × 44cm ancho · Apilables. Blancas o negras.' },
+  { id:55, categoria:'sillas', nombre:'Silla Windsor (por unidad)', precio:34000, emoji:'🪑', desc:'Silla Windsor. Polipropileno + fibra de vidrio · Patas madera haya · 80cm alto × 44cm ancho. Blancas o negras. Precio por unidad.' },
+
+  // MESAS — nuevas
+  { id:56, categoria:'mesas', nombre:'Mesa Pino L', precio:101000, emoji:'🪵', desc:'Tapa melamina · Patas pino · Estilo en L · Negro o blanco. 1,20m $101.000 · 1,40m $115.000.' },
+  { id:57, categoria:'mesas', nombre:'Mesa Redonda 0.90', precio:98000, emoji:'🪵', desc:'Tapa melamina · Patas pino · Color negro o blanco. Diámetro 90cm. (Sin sillas).' },
+  { id:58, categoria:'mesas', nombre:'Mesa Comedor 6 Personas', precio:99000, emoji:'🪵', desc:'1,51m × 0,775m × 0,91m. 100% melamina. Para 6 personas. Consultá colores disponibles.' },
+
+  // LIVING — nuevos
+  { id:59, categoria:'living', nombre:'Sofá Paris 1 Cuerpo', precio:123000, emoji:'🛋️', desc:'81×80×90cm. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
+  { id:60, categoria:'living', nombre:'Living Paradise', precio:335000, emoji:'🛋️', desc:'Tela Sunny antimancha. 1 cuerpo (0,90m) $231.000 · 2 cuerpos (1,50m) $335.000 · 3 cuerpos (2,10m) $468.000. Colores: negro, gris, arena, bronze.' },
+  { id:61, categoria:'living', nombre:'Living Lujo', precio:434000, emoji:'🛋️', desc:'Tela Touch antimancha. 1 cuerpo (1,20m) $434.000 · 2 cuerpos (1,80m) $644.000 · 3 cuerpos (2,40m) $857.000. Colores: gris, azul, arena, bronze, verde oscuro.' },
+  { id:300, categoria:'living', nombre:'Esquinero Cami', precio:null, emoji:'🛋️', desc:'Sillón esquinero con chaise longue. Consultá medidas, telas y colores disponibles.' },
+  { id:301, categoria:'living', nombre:'Esquinero Roma', precio:null, emoji:'🛋️', desc:'Sillón esquinero Roma. Consultá medidas, telas y colores disponibles.' },
+  { id:302, categoria:'living', nombre:'Esquinero Solana', precio:null, emoji:'🛋️', desc:'Sillón esquinero Solana. Consultá medidas, telas y colores disponibles.' },
+  { id:303, categoria:'living', nombre:'Sillón Nórdico Litoral', precio:null, emoji:'🛋️', desc:'Sillón estilo nórdico. Consultá medidas, telas y colores disponibles.' },
+  { id:304, categoria:'living', nombre:'Sofá Cama 1½ Plaza', precio:239000, emoji:'🛋️', desc:'Sofá cama 1,40×1,90m. Apertura frontal. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
+  { id:63, categoria:'descanso', nombre:'Respaldos (todas las medidas)', precio:35000, emoji:'🛏️', desc:'Tela Alpha antidesgarro. Colores: gris, azul, habano, beige. 0,80m $35.000 · 1,00m $41.000 · 1,40m $55.000 · 1,60m $63.000 · 1,80m $68.000 · 2,00m $75.000.' },
+
+  // PLACARES — nuevos
+  { id:64, categoria:'placares', nombre:'Placard Benevento (2 a 6 puertas)', precio:94000, emoji:'🚪', desc:'Barral de aluminio. Colores: blanco alpino, moro, wengue. 2P $94.000 · 3P $140.000 · 4P $163.000 · 6P $221.000.' },
+  { id:65, categoria:'placares', nombre:'Placard Platinum 4 Puertas', precio:185000, emoji:'🚪', desc:'1,22m × 1,85m × 0,48m. 4P + 2 cajones · Barral aluminio · Correderas metálicas. Blanco, gris andino, savanna, roble antiguo.' },
+  { id:66, categoria:'placares', nombre:'Placard Platinum 6 Puertas', precio:271000, emoji:'🚪', desc:'1,81m × 1,85m × 0,55m. 6P + 2 cajones + barral + 5 estantes · Melamina 15. Fresno blanco.' },
+  { id:67, categoria:'placares', nombre:'Placard Corredizo MAX 3 Puertas', precio:416000, emoji:'🚪', desc:'1,81m × 2,22m × 0,55m. 3 puertas corredizas · 3 cajones · Barral aluminio · Interior revestido. Savanna, gris andino.' },
+  { id:68, categoria:'placares', nombre:'Placard Tana Piu Corredizo (2P o 3P)', precio:293000, emoji:'🚪', desc:'2 puertas (1,13×1,90m) $293.000 · 3 puertas (1,72×1,90m) $419.000. Cajones + barral + interior revestido. Nevada, Fresno blanco, Moccha, Caffe.' },
+  { id:69, categoria:'placares', nombre:'Placard Tana Piu Alti (alto 2.20m)', precio:468000, emoji:'🚪', desc:'1,72m × 2,20m × 0,55m. Máxima capacidad. Blanco, Nevada, Caffe, Moccha, Fresno blanco.' },
+  { id:70, categoria:'placares', nombre:'Placard Suave Corredizo Nórdico', precio:483000, emoji:'🚪', desc:'1,85m × 1,90m × 0,55m. Diseño nórdico. Colores: blanco, Venecia, Jacaranda.' },
+  { id:71, categoria:'placares', nombre:'Placard Porto GR', precio:503000, emoji:'🚪', desc:'2,00m × 2,23m × 0,54m. 3 puertas corredizas · 4 cajones telescópicos · MDF · Excelente distribución interna. Con espejo $545.000.' },
+  { id:72, categoria:'placares', nombre:'Placard Montana', precio:405000, emoji:'🚪', desc:'1,77m × 2,13m × 0,50m. 2 puertas corredizas · 2 cajones telescópicos · MDF. Negro/beige · Negro/verde · Blanco brillo. Con espejo $448.000.' },
+  { id:73, categoria:'placares', nombre:'Placard Fortaleza 2 Puertas', precio:139000, emoji:'🚪', desc:'62,5cm × 1,80m × 47cm. 2 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
+  { id:74, categoria:'placares', nombre:'Placard Fortaleza 4 Puertas', precio:231000, emoji:'🚪', desc:'1,23m × 1,80m × 47cm. 4 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
+  { id:75, categoria:'placares', nombre:'Placard Fortaleza Corredizo 1.60m', precio:355000, emoji:'🚪', desc:'1,60m × 1,82m × 0,53m. 2 puertas corredizas. Golden oregon, grafito teca.' },
+
+  // CÓMODAS Y CHIFONIER — nuevas
+  { id:76, categoria:'comodas', nombre:'Chifonier Benevento', precio:73000, emoji:'🗄️', desc:'Blanco alpino / wengue. Modelo 3 cajones $73.000 · Modelo 4 cajones + 1 espacio $81.000.' },
+  { id:77, categoria:'comodas', nombre:'Chifonier Tana Eco', precio:87000, emoji:'🗄️', desc:'95cm × 58cm × 36cm · Melamina 15. Colores: Caffe, Mocha.' },
+  { id:78, categoria:'comodas', nombre:'Chifonier Tana Plus', precio:122000, emoji:'🗄️', desc:'95cm × 60cm × 45cm · Melamina 15. Colores: Caffe, Mocha, Nevada, Blanco, Fresno.' },
+  { id:79, categoria:'comodas', nombre:'Cómoda Tana Piu', precio:180000, emoji:'🗄️', desc:'95cm × 94cm × 45cm · Melamina 15. Blanco, Nevada, Fresno blanco, Caffe, Mocha.' },
+  { id:80, categoria:'comodas', nombre:'Cómodas 3 Cajones + 1 Puerta', precio:125000, emoji:'🗄️', desc:'92cm × 90cm × 40cm. Modelo estándar $125.000 · Modelo Milenial $124.000. Colores: Venecia, Jacaranda, Wengue, Abedul, Blanco, Carvallo.' },
+  { id:81, categoria:'comodas', nombre:'Cómoda Fortaleza (4 cajones + 1 puerta)', precio:158000, emoji:'🗄️', desc:'100cm × 100cm × 48,8cm. Golden oregon, grafito teca.' },
+  { id:82, categoria:'comodas', nombre:'Zapatero / Botinero', precio:78000, emoji:'👟', desc:'Botinero Fortaleza 18 pares $78.000 · Zapatero 3 Niveles PLT $88.000 · Zapatero 3 Niveles estándar $125.000 · Zapatero 4 Niveles $136.000.' },
+  { id:83, categoria:'comodas', nombre:'Armario Multifunción Fortaleza', precio:116000, emoji:'🗄️', desc:'90cm × 1,45m × 40cm. 2 puertas + 2 cajones. Golden oregon, grafito teca.' },
+
+  // CUCHETAS — nuevas
+  { id:84, categoria:'cuchetas', nombre:'Respaldo de Cama con Gavetas', precio:76000, emoji:'🛏️', desc:'1,51m × 1,03m × 0,17m. 2 gavetas + 1 estante + perfil metálico. Platinum.' },
+  { id:85, categoria:'cuchetas', nombre:'Cama 0.90 con Espacio de Guardado', precio:98000, emoji:'🛏️', desc:'2,00m × 0,88m. Melamina 25 y 15. Espacio de guardado interior. Gris andino, wengue.' },
+
+  // SOMMIER — nuevas líneas
+
+  // COCINA — nuevas
+  { id:95, categoria:'cocina', nombre:'Combo Cocina Línea Bahia', precio:321000, emoji:'🍳', desc:'Correderas plásticas. 1,20m c/marmolina $321.000 · 1,40m $362.000 · 1,60m $414.000. Colores: blanco, jacaranda, wengue, abedul.' },
+  { id:96, categoria:'cocina', nombre:'Combo Cocina Línea Premium', precio:377000, emoji:'🍳', desc:'Visagra semiautomática · Perfil manija aluminio · Forrado por dentro. 1,20m c/marmolina $377.000 · 1,40m $413.000 · 1,60m $524.000.' },
+  { id:97, categoria:'cocina', nombre:'Kit Cocina Acapulco (Máximo)', precio:224000, emoji:'🍳', desc:'Línea Acapulco. 3 puertas (1,71m alto × 91,5cm) $224.000 · 5 puertas (1,96m × 1,40m) $291.000. Grafito teca o blanco mate.' },
+  { id:98, categoria:'cocina', nombre:'Escobero', precio:120000, emoji:'🍳', desc:'61cm × 1,83m × 31cm. 4 estantes. Espacio para escoba, baldes, etc. Color blanco o wengue.' },
+  { id:99, categoria:'cocina', nombre:'Multiuso (Bahamas / Gramado)', precio:66000, emoji:'🍳', desc:'Multiuso Gramado (75cm) $66.000 · Multiuso Bahamas (1,70m) $98.000. Para cocinas y distintos ambientes.' },
+  { id:100, categoria:'cocina', nombre:'Kit Duplo / Kit Triplo con Vidrio', precio:145000, emoji:'🍳', desc:'Kit Duplo (1,86×0,70m) $145.000 · Kit Triplo con vidrio (1,86×1,05m, 3 estantes + 3 cajones) $235.000.' },
+
+  // ESCRITORIOS — nuevos
+  { id:101, categoria:'escritorios', nombre:'Desayunador', precio:106000, emoji:'📖', desc:'1,32m × 1,03m × 0,45m. 3 estantes laterales (1 inclinable). Platinum.' },
+  { id:102, categoria:'escritorios', nombre:'Rack TV Compacto 1.05m', precio:97000, emoji:'📺', desc:'1,05m × 0,67m × 0,40m. Hasta 40". Ideal para dormitorios y cuartos.' },
+
+  // MESAS DE LUZ — nuevas
+  { id:103, categoria:'infantil', nombre:'Mesa de Luz Benevento', precio:34000, emoji:'🌙', desc:'50cm × 45cm × 30cm. 1 cajón. Revestida por dentro. Blanco alpino o wengue.' },
+  { id:104, categoria:'infantil', nombre:'Mesa de Luz Tana Piu', precio:63000, emoji:'🌙', desc:'62cm × 45cm × 39cm. 1 cajón + 1 puerta. Revestida. Blanco, Nevada, Fresno, Caffe, Moccha.' },
+  { id:105, categoria:'infantil', nombre:'Mesa de Luz Platinum', precio:63000, emoji:'🌙', desc:'65cm × 45cm × 45cm. 1 cajón + 1 estante + 1 puerta. Revestida. Blanco, savanna, gris andino.' },
+  { id:310, categoria:'escritorios', nombre:'Biblioteca con Puertas', precio:null, emoji:'📚', desc:'Biblioteca con estantes superiores y puertas inferiores. Ideal para living, estudio u oficina. Consultá medidas y colores.' },
+  { id:311, categoria:'escritorios', nombre:'Escritorio Camarín con Espejo (Tocador)', precio:null, emoji:'🪞', desc:'Escritorio tocador con espejo y cajones. Disponible en 0,90m y 1,30m. Consultá colores disponibles.' },
+  { id:312, categoria:'racks-tv', nombre:'Rack TV 2 Puertas Corredizas', precio:199000, emoji:'📺', desc:'Rack de TV con 2 puertas corredizas y espacios abiertos. Consultá medidas y colores.' },
+  { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:199000, emoji:'📺', desc:'Rack modular para TV. Consultá medidas y colores disponibles.' },
+  { id:314, categoria:'racks-tv', nombre:'Home Scaletta', precio:299000, emoji:'📺', desc:'Panel/home modular para TV con estantes. Consultá medidas y colores.' },
+  { id:315, categoria:'cocina', nombre:'Kit Compacto Turin', precio:180000, emoji:'🍳', desc:'Kit de cocina compacto: espacio para microondas, alacena y bajo mesada. Línea Turin. Blanco, Hickory, Nebraska.' },
+  { id:316, categoria:'comodas', nombre:'Cómoda Tana Plus Pack', precio:null, emoji:'🗄️', desc:'Cómoda con cajones y puerta. Melamina reforzada. Consultá medidas y colores.' },
+  { id:317, categoria:'infantil', nombre:'Mesa de Luz Fortaleza', precio:null, emoji:'🌙', desc:'Mesa de luz con 2 cajones y estante. Línea Fortaleza. Golden oregon, grafito teca.' },
+  { id:318, categoria:'placares', nombre:'Placard Fortaleza 6 Puertas', precio:null, emoji:'🚪', desc:'Placard Fortaleza de 6 puertas y cajones. Amplia capacidad de guardado. Golden oregon, grafito teca.' },
+];
+
+// Modelos de colchón/sommier: 1 card con selector de tipo (colchón/sommier) y medida
+const colchones = [
+  { id:'terra', nombre:"Terra", img:null, spec:"Resorte Bonnel reforzado · 25cm · europillow · marco de acero · soporta 80kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:116000,sommier:160000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:143000,sommier:193000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:195000,sommier:249000}] },
+  { id:'fantasia', nombre:"Fantasía Jaquard", img:'imgs/p24.jpg', spec:"Espuma · 26cm · tela jaquard gris · europillow", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:126000,sommier:170000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:152000,sommier:203000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:211000,sommier:265000}] },
+  { id:'eurotop', nombre:"Eurotop", img:'imgs/n87.jpg', spec:"Espuma · doble europillow · tela azul con diseño · soporta 80kg", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:137000,sommier:181000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:169000,sommier:220000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:231000,sommier:285000}] },
+  { id:'skyfoam', nombre:"Sky Foam Black", img:'imgs/p29.jpg', spec:"Espuma · 30cm · tela jaquard negro y gris · doble europillow · soporta 90kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:149000,sommier:193000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:186000,sommier:236000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:261000,sommier:315000}] },
+  { id:'skygrey', nombre:"Sky Grey TDP", img:'imgs/n86.jpg', spec:"Espuma alta · 30cm · 30kg densidad · doble europillow · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:182000,sommier:226000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:232000,sommier:283000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:319000,sommier:374000}, {m:'1,60×2,00',plaza:'Queen',colchon:376000,sommier:469000}, {m:'2,00×2,00',plaza:'King',colchon:475000,sommier:577000}] },
+  { id:'skytotal', nombre:"Sky Total Negro", img:'imgs/n88.jpg', spec:"Espuma · 30cm · 30kg densidad · tela jaquard negro · doble europillow · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:172000,sommier:215000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:224000,sommier:274000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:302000,sommier:356000}, {m:'1,60×2,00',plaza:'Queen',colchon:362000,sommier:455000}, {m:'2,00×2,00',plaza:'King',colchon:455000,sommier:557000}] },
+  { id:'marea', nombre:"Marea Euro Top XL", img:null, spec:"Espuma poliuretano alta densidad · 33cm · 32kg densidad · doble euro top · soporta 120kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:217000,sommier:261000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:271000,sommier:321000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:371000,sommier:425000}, {m:'1,60×2,00',plaza:'Queen',colchon:449000,sommier:542000}, {m:'2,00×2,00',plaza:'King',colchon:574000,sommier:677000}] },
+  { id:'sensacion', nombre:"Sensación Pillow Top", img:'imgs/n90.jpg', spec:"Espuma poliuretano alta densidad · 30cm · 35kg densidad · doble pillow top · soporta 130kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:224000,sommier:268000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:276000,sommier:326000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:371000,sommier:425000}, {m:'1,60×2,00',plaza:'Queen',colchon:455000,sommier:547000}, {m:'1,80×2,00',plaza:'Súper King',colchon:511000,sommier:609000}, {m:'2,00×2,00',plaza:'King',colchon:570000,sommier:672000}] },
+  { id:'spring', nombre:"Resorte Spring", img:null, spec:"Resorte Bonnel reforzado · 30cm · doble europillow · doble marco de acero · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:180000,sommier:224000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:221000,sommier:271000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:314000,sommier:368000}, {m:'1,60×2,00',plaza:'Queen',colchon:378000,sommier:470000}] },
+  { id:'realeza', nombre:"Realeza Exclusive", img:'imgs/n93.jpg', spec:"Resorte bicónico · 35cm · espuma viscoelástica de rápida recuperación · soporta 130kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:245000,sommier:289000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:336000,sommier:386000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:440000,sommier:494000}, {m:'1,60×2,00',plaza:'Queen',colchon:574000,sommier:666000}, {m:'2,00×2,00',plaza:'King',colchon:686000,sommier:788000}] },
+  { id:'euromax', nombre:"Premium Euro Max", img:'imgs/n91.jpg', spec:"Núcleo espuma HR alta densidad · 37cm · 40kg densidad · capitonée de lujo · doble euro espuma", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:630000,sommier:684000}, {m:'1,60×2,00',plaza:'Queen',colchon:721000,sommier:813000}, {m:'1,80×2,00',plaza:'Súper King',colchon:832000,sommier:929000}, {m:'2,00×2,00',plaza:'King',colchon:974000,sommier:1077000}] },
+  { id:'riviere', nombre:"Riviere", img:'imgs/n92.jpg', spec:"Pillow viscoelástico 65kg · 34cm · tejido 3D antihumedad · soporta 130kg/plaza", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:617000,sommier:672000}, {m:'1,60×2,00',plaza:'Queen',colchon:742000,sommier:834000}, {m:'2,00×2,00',plaza:'King',colchon:950000,sommier:1052000}] },
+  { id:'briz', nombre:"Premium Briz", img:'imgs/n94.jpg', spec:"Alta gama · 35cm · soporta 140kg/plaza", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:629000,sommier:684000}, {m:'1,60×2,00',plaza:'Queen',colchon:717000,sommier:809000}, {m:'1,80×2,00',plaza:'Súper King',colchon:893000,sommier:991000}, {m:'2,00×2,00',plaza:'King',colchon:966000,sommier:1068000}] },
+];
+
+// Mapeo id → imagen descargada del catálogo WhatsApp (solo fotos propias)
+const imgMap = {
+  1:'imgs/p01.jpg',
+  2:'imgs/p02.jpg',
+  3:'imgs/p03.jpg',
+  4:'imgs/p04.jpg',
+  6:'imgs/p05.jpg',
+  7:'imgs/p06.jpg',
+  8:'imgs/p07.jpg',
+  9:'imgs/p08.jpg',
+  10:'imgs/p09.jpg',
+  11:'imgs/p10.jpg',
+  12:'imgs/p11.jpg',
+  13:'imgs/p12.jpg',
+  14:'imgs/p13.jpg',
+  15:'imgs/p14.jpg',
+  16:'imgs/p37.jpg',
+  17:'imgs/placard-fort-3p.jpg',
+  18:'imgs/p17.jpg',
+  20:'imgs/p26.jpg',
+  21:'imgs/p19.jpg',
+  22:'imgs/p20.jpg',
+  23:'imgs/p39.jpg',
+  24:'imgs/p18.jpg',
+  25:'imgs/p21.jpg',
+  26:'imgs/p22.jpg',
+  27:'imgs/p23.jpg',
+  28:'imgs/p27.jpg',
+  29:'imgs/p28.jpg',
+  30:'imgs/p29.jpg',
+  31:'imgs/p24.jpg',
+  32:'imgs/p30.jpg',
+  33:'imgs/p31.jpg',
+  34:'imgs/p32.jpg',
+  35:'imgs/p33.jpg',
+  36:'imgs/biblio-5esp.jpg',
+  37:'imgs/p35.jpg',
+  38:'imgs/p36.jpg',
+  39:'imgs/p38.jpg',
+  40:'imgs/p25.jpg',
+  50:'imgs/n50.jpg', 51:'imgs/n51.jpg', 52:'imgs/n52.jpg', 53:'imgs/n53.jpg',
+  54:'imgs/n54.jpg', 55:'imgs/n55.jpg', 56:'imgs/n56.jpg', 57:'imgs/n57.jpg',
+  59:'imgs/n59.jpg', 60:'imgs/n60.jpg', 61:'imgs/n61.jpg', 62:'imgs/n62.jpg',
+  63:'imgs/n63.jpg', 64:'imgs/n64.jpg', 65:'imgs/n65.jpg', 66:'imgs/n66.jpg',
+  67:'imgs/n67.jpg', 68:'imgs/n68.jpg', 69:'imgs/n69.jpg', 70:'imgs/n70.jpg',
+  71:'imgs/n71.jpg', 72:'imgs/n72.jpg', 73:'imgs/n73.jpg', 74:'imgs/placard-fort-4p.jpg',
+  75:'imgs/n75.jpg', 76:'imgs/n76.jpg', 77:'imgs/n77.jpg', 78:'imgs/n78.jpg',
+  79:'imgs/n79.jpg', 80:'imgs/n80.jpg', 81:'imgs/comoda-fortaleza.jpg', 82:'imgs/n82.jpg',
+  83:'imgs/n83.jpg', 84:'imgs/n84.jpg', 86:'imgs/n86.jpg', 87:'imgs/n87.jpg',
+  88:'imgs/n88.jpg', 90:'imgs/n90.jpg', 91:'imgs/n91.jpg', 92:'imgs/n92.jpg',
+  93:'imgs/n93.jpg', 94:'imgs/n94.jpg', 95:'imgs/n95.jpg', 96:'imgs/n96.jpg',
+  97:'imgs/n97.jpg', 98:'imgs/n98.jpg', 99:'imgs/n99.jpg', 100:['imgs/kit-duplo-1.jpg','imgs/kit-duplo-2.jpg','imgs/kit-duplo-3.jpg'],
+  101:'imgs/n101.jpg', 102:'imgs/n102.jpg', 103:'imgs/n103.jpg', 104:'imgs/n104.jpg',
+  105:'imgs/n105.jpg',
+  250:'imgs/p28.jpg',
+  305:'imgs/sillon-conrad.jpg',
+  306:['imgs/silla-bari-1.jpg','imgs/silla-bari-2.jpg'],
+  307:'imgs/silla-vogue.jpg',
+  300:'imgs/sill-cami.jpg',
+  301:['imgs/sill-roma-1.jpg','imgs/sill-roma-2.jpg'],
+  302:'imgs/sill-solana.jpg',
+  303:'imgs/sill-nordico.jpg',
+  304:'imgs/sill-sofacama.jpg',
+  310:['imgs/biblio-puertas-1.jpg','imgs/biblio-puertas-2.jpg'],
+  311:['imgs/esc-camarin-090.jpg','imgs/esc-camarin-130.jpg'],
+  312:['imgs/rack-corredizas-1.jpg','imgs/rack-corredizas-2.jpg'],
+  313:'imgs/rack-mundial.jpg',
+  314:'imgs/home-scaletta.jpg',
+  315:['imgs/kit-compacto-turin-1.jpg','imgs/kit-compacto-turin-2.jpg'],
+  316:'imgs/comoda-tana-pluspack.jpg',
+  317:'imgs/mesaluz-fortaleza.jpg',
+  318:'imgs/placard-fort-6p.jpg',
+  };
+
+const categorias = [
+  { key:'combos-mesas', label:'🪑 Combos Mesas y Sillas' },
+  { key:'sillas', label:'🪑 Sillas' },
+  { key:'mesas', label:'🪵 Mesas' },
+  { key:'racks-tv', label:'📺 Racks y Muebles de TV' },
+  { key:'living', label:'🛋️ Living, Sofás y Sillones' },
+  { key:'placares', label:'🚪 Placares' },
+  { key:'comodas', label:'🗄️ Cómodas y Chifonier' },
+  { key:'cuchetas', label:'🛏️ Cuchetas' },
+  { key:'descanso', label:'🛏️ Colchones y Sommiers' },
+  { key:'cocina', label:'🍳 Muebles de Cocina' },
+  { key:'escritorios', label:'📖 Escritorios y Bibliotecas' },
+  { key:'infantil', label:'🌟 Línea Infantil' },
+];
+
+function formatPeso(n) {
+  return '$' + Math.round(n).toLocaleString('es-AR');
+}
+
+function waLink(producto) {
+  const msg = encodeURIComponent(`Hola! Quiero consultar sobre: *${producto.nombre}*`);
+  return `https://wa.me/${WA}?text=${msg}`;
+}
+
+const WA_ICON = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+function imgList(id) { const v = imgMap[id]; return !v ? [] : (Array.isArray(v) ? v : [v]); }
+
+function galleryHTML(list, nombre, emoji) {
+  if (!list.length) return `<div class="card-img">${emoji || '🛒'}</div>`;
+  if (list.length === 1) return `<div class="card-img"><img src="${list[0]}" alt="${nombre}" loading="lazy"></div>`;
+  return `<div class="card-img galeria" data-idx="0">` +
+    list.map((s,i) => `<img src="${s}" class="${i===0?'activa':''}" alt="${nombre}" loading="lazy">`).join('') +
+    `<button class="gal-nav prev" onclick="galNav(this,-1,event)">‹</button>` +
+    `<button class="gal-nav next" onclick="galNav(this,1,event)">›</button>` +
+    `<div class="gal-dots">` + list.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join('') + `</div>` +
+  `</div>`;
+}
+function galNav(btn, dir, ev) {
+  ev.preventDefault(); ev.stopPropagation();
+  const g = btn.closest('.galeria');
+  const imgs = g.querySelectorAll('img'), dots = g.querySelectorAll('.gal-dots span');
+  let idx = parseInt(g.dataset.idx, 10);
+  imgs[idx].classList.remove('activa'); dots[idx].classList.remove('on');
+  idx = (idx + dir + imgs.length) % imgs.length;
+  imgs[idx].classList.add('activa'); dots[idx].classList.add('on');
+  g.dataset.idx = idx;
+}
+
+function renderPrecioValor(contado, precioTachado) {
+  if (!contado) return `<div class="sin-precio">Consultá precio</div>`;
+  const c3 = contado * (1 + RECARGO_3C) / 3;
+  const c6 = contado * (1 + RECARGO_6C) / 6;
+  const c12 = contado * (1 + RECARGO_12C) / 12;
+  if (modoActual === 'contado') {
+    let html = (precioTachado ? `<div class="precio-ref">${formatPeso(precioTachado)}</div>` : '') + `<div class="precio-contado">${formatPeso(contado)}</div>`;
+    html += `<div class="precio-cuotas">3 cuotas de <span>${formatPeso(c3)}</span> · 6 de <span>${formatPeso(c6)}</span> · 12 de <span>${formatPeso(c12)}</span></div>`;
+    return html;
+  } else if (modoActual === '3c') {
+    return `<div class="precio-destacado">3 × ${formatPeso(c3)}</div><div class="precio-cuotas">Total: ${formatPeso(contado*(1+RECARGO_3C))} · Contado: ${formatPeso(contado)}</div>`;
+  } else if (modoActual === '6c') {
+    return `<div class="precio-destacado">6 × ${formatPeso(c6)}</div><div class="precio-cuotas">Total: ${formatPeso(contado*(1+RECARGO_6C))} · Contado: ${formatPeso(contado)}</div>`;
+  } else {
+    return `<div class="precio-destacado">12 × ${formatPeso(c12)}</div><div class="precio-cuotas">Total: ${formatPeso(contado*(1+RECARGO_12C))} · Contado: ${formatPeso(contado)}</div>`;
+  }
+}
+function renderPrecio(p) { return renderPrecioValor(p.precio, p.precioTachado); }
+
+function cardHTML(p) {
+  const key = 'p' + p.id, en = enCarrito(key);
+  return `
+    <div class="card">
+      ${galleryHTML(imgList(p.id), p.nombre, p.emoji)}
+      <div class="card-body">
+        <div class="card-nombre">${p.nombre}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-precios">${renderPrecio(p)}</div>
+      </div>
+      <div class="card-actions">
+        <button class="card-agregar${en?' en-carrito':''}" onclick="toggleCarrito(${p.id})">${en?'✓ Agregado':'+ Agregar'}</button>
+        <a class="card-wa" href="${waLink(p)}" target="_blank">${WA_ICON} Consultar</a>
+      </div>
+    </div>`;
+}
+
+// ----- COLCHONES / SOMMIERS con selector -----
+const selColchon = {};
+function getSelColchon(id) { return selColchon[id] || (selColchon[id] = { tipo:'colchon', idx:0 }); }
+function precioColchon(m, sel) { const md = m.medidas[sel.idx]; return sel.tipo==='colchon' ? md.colchon : md.sommier; }
+function nombreColchon(m, sel) { const md = m.medidas[sel.idx]; return `${sel.tipo==='colchon'?'Colchón':'Sommier c/base'} ${m.nombre} ${md.m}`; }
+function keyColchon(m, sel) { return `c-${m.id}-${sel.tipo}-${sel.idx}`; }
+function waColchon(m, sel) {
+  const md = m.medidas[sel.idx];
+  const tipo = sel.tipo==='colchon' ? 'Colchón' : 'Sommier con base';
+  const msg = encodeURIComponent(`Hola! Quiero consultar sobre: *${tipo} ${m.nombre}* medida ${md.m} (${formatPeso(precioColchon(m,sel))})`);
+  return `https://wa.me/${WA}?text=${msg}`;
+}
+function renderColchonCard(m) {
+  const sel = getSelColchon(m.id);
+  const en = enCarrito(keyColchon(m, sel));
+  return `
+    <div class="card" data-colchon="${m.id}">
+      ${galleryHTML(m.img?[m.img]:[], m.nombre, '🛏️')}
+      <div class="card-body">
+        <div class="card-nombre">${m.nombre}</div>
+        <div class="card-desc">${m.spec}</div>
+        <div class="seg">
+          <button class="${sel.tipo==='colchon'?'active':''}" onclick="setTipoColchon('${m.id}','colchon')">Colchón solo</button>
+          <button class="${sel.tipo==='sommier'?'active':''}" onclick="setTipoColchon('${m.id}','sommier')">Sommier c/ base</button>
+        </div>
+        <div class="medidas">
+          ${m.medidas.map((md,i)=>`<button class="${sel.idx===i?'active':''}" onclick="setMedidaColchon('${m.id}',${i})">${md.m}<small>${md.plaza}</small></button>`).join('')}
+        </div>
+        <div class="card-precios" data-precio-colchon>${renderPrecioValor(precioColchon(m,sel))}</div>
+      </div>
+      <div class="card-actions">
+        <button class="card-agregar${en?' en-carrito':''}" data-agregar-colchon onclick="agregarColchon('${m.id}')">${en?'✓ Agregado':'+ Agregar'}</button>
+        <a class="card-wa" data-wa-colchon href="${waColchon(m,sel)}" target="_blank">${WA_ICON} Consultar</a>
+      </div>
+    </div>`;
+}
+function setTipoColchon(id, tipo) { getSelColchon(id).tipo = tipo; refreshColchon(id); }
+function setMedidaColchon(id, idx) { getSelColchon(id).idx = idx; refreshColchon(id); }
+function refreshColchon(id) {
+  const m = colchones.find(c=>c.id===id), sel = getSelColchon(id);
+  const card = document.querySelector(`[data-colchon="${id}"]`);
+  if (!card) return;
+  const seg = card.querySelectorAll('.seg button');
+  seg[0].classList.toggle('active', sel.tipo==='colchon');
+  seg[1].classList.toggle('active', sel.tipo==='sommier');
+  card.querySelectorAll('.medidas button').forEach((b,i)=>b.classList.toggle('active', i===sel.idx));
+  card.querySelector('[data-precio-colchon]').innerHTML = renderPrecioValor(precioColchon(m,sel));
+  card.querySelector('[data-wa-colchon]').href = waColchon(m, sel);
+  const en = enCarrito(keyColchon(m, sel));
+  const ag = card.querySelector('[data-agregar-colchon]');
+  ag.classList.toggle('en-carrito', en);
+  ag.innerHTML = en ? '✓ Agregado' : '+ Agregar';
+}
+function agregarColchon(id) {
+  const m = colchones.find(c=>c.id===id), sel = getSelColchon(id);
+  toggleKey(keyColchon(m,sel), nombreColchon(m,sel), precioColchon(m,sel), m.img||null);
+}
+
+function renderHome() {
+  let html = '<div class="home-intro"><h2>¿Qué estás buscando?</h2><p>Elegí una categoría para ver los productos.</p></div><div class="home-grid">';
+  categorias.forEach(c => {
+    const items = productos.filter(p => p.categoria === c.key);
+    if (!items.length) return;
+    const conFoto = items.find(p => imgList(p.id).length);
+    let coverImg = conFoto ? imgList(conFoto.id)[0] : null;
+    if (!coverImg && c.key === 'descanso') { const cm = colchones.find(m=>m.img); if (cm) coverImg = cm.img; }
+    const cover = coverImg ? `<img src="${coverImg}" alt="${c.label}" loading="lazy">` : `<div class="home-cat-emoji">${c.label.trim().charAt(0)}</div>`;
+    const total = items.length + (c.key === 'descanso' ? colchones.length : 0);
+    html += `
+      <div class="home-cat" onclick="filtrar('${c.key}')">
+        ${cover}
+        <div class="home-cat-overlay">
+          <span>${c.label}</span>
+          <small>${total} producto${total!==1?'s':''}</small>
+        </div>
+      </div>`;
+  });
+  html += '</div>';
+  document.getElementById('catalogo').innerHTML = html;
+}
+
+function renderCatalogo(filtro) {
+  let html = '';
+  if (filtro !== 'todos' && filtro !== 'inicio') {
+    html += `<button class="volver-btn" onclick="filtrar('inicio')">← Todas las categorías</button>`;
+  }
+  const cats = filtro === 'todos' ? categorias : categorias.filter(c => c.key === filtro);
+  cats.forEach(cat => {
+    const items = productos.filter(p => p.categoria === cat.key);
+    const esDescanso = cat.key === 'descanso';
+    if (!items.length && !esDescanso) return;
+    html += `<h2 class="categoria-titulo">${cat.label}</h2><div class="grid">`;
+    if (esDescanso) colchones.forEach(m => { html += renderColchonCard(m); });
+    items.forEach(p => { html += cardHTML(p); });
+    html += '</div>';
+  });
+  document.getElementById('catalogo').innerHTML = html;
+}
+
+function renderBusqueda(q) {
+  const nq = norm(q);
+  const cols = colchones.filter(m => norm(m.nombre).includes(nq) || norm(m.spec).includes(nq) || norm('colchon sommier colchones sommiers').includes(nq));
+  const prods = productos.filter(p => norm(p.nombre).includes(nq) || norm(p.desc).includes(nq));
+  let html = `<button class="volver-btn" onclick="filtrar('inicio')">← Todas las categorías</button>`;
+  html += `<h2 class="categoria-titulo">Resultados para “${q}”</h2>`;
+  if (!cols.length && !prods.length) {
+    html += `<p style="color:var(--gris);padding:0 4px 40px">No encontramos productos con “${q}”. Probá con otra palabra (ej: placard, colchón, mesa).</p>`;
+  } else {
+    html += '<div class="grid">';
+    cols.forEach(m => { html += renderColchonCard(m); });
+    prods.forEach(p => { html += cardHTML(p); });
+    html += '</div>';
+  }
+  document.getElementById('catalogo').innerHTML = html;
+}
+function norm(s) { return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+
+// CARRITO — entradas: { key, nombre, precio, img }
+let carritoItems = [];
+
+function enCarrito(key) { return carritoItems.some(e => e.key === key); }
+function toggleKey(key, nombre, precio, img) {
+  const i = carritoItems.findIndex(e => e.key === key);
+  if (i === -1) carritoItems.push({ key, nombre, precio, img });
+  else carritoItems.splice(i, 1);
+  actualizarCarrito();
+  render();
+}
+function toggleCarrito(id) {
+  const p = productos.find(x => x.id === id);
+  if (!p) return;
+  toggleKey('p' + id, p.nombre, p.precio, imgList(id)[0] || null);
+}
+function quitarKey(key) {
+  const i = carritoItems.findIndex(e => e.key === key);
+  if (i >= 0) carritoItems.splice(i, 1);
+  actualizarCarrito();
+  render();
+}
+
+function actualizarCarrito() {
+  const n = carritoItems.length;
+  document.getElementById('carritoBadge').textContent = n;
+  document.getElementById('carritoBtn').classList.toggle('oculto', n === 0);
+
+  const itemsEl = document.getElementById('carritoItems');
+  const footerEl = document.getElementById('carritoFooter');
+  const totalEl = document.getElementById('carritoTotal');
+
+  if (n === 0) {
+    itemsEl.innerHTML = '<div class="carrito-vacio">Todavía no agregaste productos.<br>Tocá <strong>+ Agregar</strong> en los que te interesan.</div>';
+    footerEl.style.display = 'none';
+    return;
+  }
+
+  let totalContado = 0;
+  itemsEl.innerHTML = carritoItems.map(e => {
+    if (e.precio) totalContado += e.precio;
+    const imgHtml = e.img
+      ? `<div class="carrito-item-img"><img src="${e.img}" alt="${e.nombre}"></div>`
+      : `<div class="carrito-item-img">🛒</div>`;
+    const precioStr = e.precio ? formatPeso(e.precio) : 'Consultá precio';
+    return `
+      <div class="carrito-item">
+        ${imgHtml}
+        <div class="carrito-item-info">
+          <div class="carrito-item-nombre">${e.nombre}</div>
+          <div class="carrito-item-precio">${precioStr}</div>
+        </div>
+        <button class="carrito-item-quitar" onclick="quitarKey('${e.key}')" title="Quitar">×</button>
+      </div>`;
+  }).join('');
+
+  footerEl.style.display = 'flex';
+  totalEl.innerHTML = totalContado > 0
+    ? `Total estimado contado: <strong>${formatPeso(totalContado)}</strong>`
+    : `${n} producto${n > 1 ? 's' : ''} seleccionado${n > 1 ? 's' : ''}`;
+}
+
+function abrirCarrito() {
+  document.getElementById('carritoOverlay').classList.add('abierto');
+  document.getElementById('carritoPanel').classList.add('abierto');
+  actualizarCarrito();
+}
+
+function cerrarCarrito() {
+  document.getElementById('carritoOverlay').classList.remove('abierto');
+  document.getElementById('carritoPanel').classList.remove('abierto');
+}
+
+function vaciarCarrito() {
+  carritoItems = [];
+  actualizarCarrito();
+  render();
+}
+
+function consultarTodo() {
+  const lista = carritoItems.map(e => `• ${e.nombre}${e.precio ? ` — ${formatPeso(e.precio)}` : ''}`).join('\n');
+  const msg = encodeURIComponent(`Hola! Quiero consultar sobre los siguientes productos:\n\n${lista}\n\n¿Me pueden dar precios y disponibilidad?`);
+  window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
+}
+
+let filtroActual = 'inicio';
+let busquedaActiva = '';
+
+function render() {
+  if (busquedaActiva) renderBusqueda(busquedaActiva);
+  else if (filtroActual === 'inicio') renderHome();
+  else renderCatalogo(filtroActual);
+}
+
+function filtrar(key) {
+  busquedaActiva = '';
+  const inp = document.getElementById('buscador');
+  if (inp) inp.value = '';
+  document.getElementById('buscadorClear').style.display = 'none';
+  filtroActual = key;
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buscar(q) {
+  busquedaActiva = q.trim();
+  document.getElementById('buscadorClear').style.display = busquedaActiva ? 'block' : 'none';
+  if (!busquedaActiva) { render(); return; }
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  render();
+}
+function limpiarBusqueda() {
+  busquedaActiva = '';
+  document.getElementById('buscador').value = '';
+  document.getElementById('buscadorClear').style.display = 'none';
+  filtrar('inicio');
+}
+
+function setModo(modo) {
+  modoActual = modo;
+  document.querySelectorAll('.precio-toggle button').forEach((b,i) => {
+    b.classList.toggle('active', ['contado','3c','6c','12c'][i] === modo);
+  });
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
