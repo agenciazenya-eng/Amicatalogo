@@ -541,7 +541,8 @@
   <button class="filtro-btn" data-key="mesas" onclick="filtrar('mesas')">Mesas</button>
   <button class="filtro-btn" data-key="racks-tv" onclick="filtrar('racks-tv')">Racks / TV</button>
   <button class="filtro-btn" data-key="living" onclick="filtrar('living')">Living, Sofás y Sillones</button>
-  <button class="filtro-btn" data-key="placares" onclick="filtrar('placares')">Placares</button>
+  <button class="filtro-btn" data-key="placares-corredizos" onclick="filtrar('placares-corredizos')">Placares Corredizos</button>
+  <button class="filtro-btn" data-key="placares-abrir" onclick="filtrar('placares-abrir')">Placares de Abrir</button>
   <button class="filtro-btn" data-key="comodas" onclick="filtrar('comodas')">Cómodas</button>
   <button class="filtro-btn" data-key="cuchetas" onclick="filtrar('cuchetas')">Cuchetas</button>
   <button class="filtro-btn" data-key="descanso" onclick="filtrar('descanso')">Colchones y Sommiers</button>
@@ -626,11 +627,24 @@ const productos = [
   { id:16, categoria:'living', nombre:'Esquinero Bassic (Temu) 1.70×1.70', precio:344000, emoji:'🛋️', desc:'Esquinero con puff incluido. 1,70×1,70×90cm. Tapizado en pana. Colores: gris, azul, habano, rojo, beige, chocolate.' },
 
   // PLACARES
-  { id:17, categoria:'placares', nombre:'Placard Fortaleza 3 Puertas', precio:187000, emoji:'🚪', desc:'Alto 1,80m · Ancho 93cm · Prof 47cm. 3 puertas + 2 cajones. Barral de aluminio. Colores: golden oregon, grafito teca.' },
-  { id:18, categoria:'placares', nombre:'Combo Placard + Cómoda Infantil Fortaleza', precio:320000, emoji:'🎀', desc:'SET INFANTIL: Placard blanco con puertas rosas. 3 estantes + barra de colgado. Cómoda con 4 cajones amplios. Puertas batientes suaves.' },
-  { id:19, categoria:'placares', nombre:'Placard Platinum BASE 3 Puertas', precio:154000, emoji:'🚪', desc:'Alto 1,85m · Ancho 92cm · Prof 0,48m. 3 puertas + 2 cajones. Barral de aluminio. Colores: blanco, gris andino, savanna, roble antiguo.' },
-  { id:20, categoria:'placares', nombre:'Placard Corredizo MAX 2 Puertas 1.21×2.22', precio:246000, emoji:'🚪', desc:'2 puertas corredizas. Alto 2,22m · Ancho 1,21m · Prof 0,55m. Correderas metálicas + barral aluminio. Colores: blanco, gris andino.' },
-  { id:46, categoria:'placares', nombre:'Placard Platinum BASE 2 Puertas', precio:116000, emoji:'🚪', desc:'Alto 1,85m · Ancho 62cm · Prof 0,48m. 2 puertas + 2 cajones. Disponible en varios colores.' },
+  { id:68, categoria:'placares-corredizos', nombre:'Placard Tana Piu Corredizo (2P o 3P)', precio:293000, emoji:'🚪', desc:'2 puertas (1,13×1,90m) $293.000 · 3 puertas (1,72×1,90m) $419.000. Cajones + barral + interior revestido. Nevada, Fresno blanco, Moccha, Caffe.' },
+  { id:20, categoria:'placares-corredizos', nombre:'Placard Corredizo MAX 2 Puertas 1.21×2.22', precio:246000, emoji:'🚪', desc:'2 puertas corredizas. Alto 2,22m · Ancho 1,21m · Prof 0,55m. Correderas metálicas + barral aluminio. Colores: blanco, gris andino.' },
+  { id:75, categoria:'placares-corredizos', nombre:'Placard Fortaleza Corredizo 1.60m', precio:355000, emoji:'🚪', desc:'1,60m × 1,82m × 0,53m. 2 puertas corredizas. Golden oregon, grafito teca.' },
+  { id:69, categoria:'placares-corredizos', nombre:'Placard Tana Piu Alti (alto 2.20m)', precio:468000, emoji:'🚪', desc:'1,72m × 2,20m × 0,55m. Máxima capacidad. Blanco, Nevada, Caffe, Moccha, Fresno blanco.' },
+  { id:72, categoria:'placares-corredizos', nombre:'Placard Montana', precio:405000, emoji:'🚪', desc:'1,77m × 2,13m × 0,50m. 2 puertas corredizas · 2 cajones telescópicos · MDF. Negro/beige · Negro/verde · Blanco brillo. Con espejo $448.000.' },
+  { id:67, categoria:'placares-corredizos', nombre:'Placard Corredizo 633 MAX 3 Puertas', precio:372000, emoji:'🚪', desc:'1,81m × 2,22m × 0,55m. 3 puertas corredizas · 3 cajones · Barral aluminio · Interior revestido. Savanna, gris andino.' },
+  { id:70, categoria:'placares-corredizos', nombre:'Placard Suave Corredizo Nórdico', precio:483000, emoji:'🚪', desc:'1,85m × 1,90m × 0,55m. Diseño nórdico. Colores: blanco, Venecia, Jacaranda.' },
+  { id:71, categoria:'placares-corredizos', nombre:'Placard Porto GR', precio:503000, emoji:'🚪', desc:'2,00m × 2,23m × 0,54m. 3 puertas corredizas · 4 cajones telescópicos · MDF · Excelente distribución interna. Con espejo $545.000.' },
+  { id:46, categoria:'placares-abrir', nombre:'Placard Platinum BASE 2 Puertas', precio:116000, emoji:'🚪', desc:'Alto 1,85m · Ancho 62cm · Prof 0,48m. 2 puertas + 2 cajones. Disponible en varios colores.' },
+  { id:73, categoria:'placares-abrir', nombre:'Placard Fortaleza 2 Puertas', precio:139000, emoji:'🚪', desc:'62,5cm × 1,80m × 47cm. 2 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
+  { id:19, categoria:'placares-abrir', nombre:'Placard Platinum BASE 3 Puertas', precio:154000, emoji:'🚪', desc:'Alto 1,85m · Ancho 92cm · Prof 0,48m. 3 puertas + 2 cajones. Barral de aluminio. Colores: blanco, gris andino, savanna, roble antiguo.' },
+  { id:17, categoria:'placares-abrir', nombre:'Placard Fortaleza 3 Puertas', precio:187000, emoji:'🚪', desc:'Alto 1,80m · Ancho 93cm · Prof 47cm. 3 puertas + 2 cajones. Barral de aluminio. Colores: golden oregon, grafito teca.' },
+  { id:65, categoria:'placares-abrir', nombre:'Placard Platinum 4 Puertas', precio:185000, emoji:'🚪', desc:'1,22m × 1,85m × 0,48m. 4P + 2 cajones · Barral aluminio · Correderas metálicas. Blanco, gris andino, savanna, roble antiguo.' },
+  { id:74, categoria:'placares-abrir', nombre:'Placard Fortaleza 4 Puertas', precio:231000, emoji:'🚪', desc:'1,23m × 1,80m × 47cm. 4 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
+  { id:66, categoria:'placares-abrir', nombre:'Placard Platinum 6 Puertas', precio:271000, emoji:'🚪', desc:'1,81m × 1,85m × 0,55m. 6P + 2 cajones + barral + 5 estantes · Melamina 15. Fresno blanco.' },
+  { id:318, categoria:'placares-abrir', nombre:'Placard Fortaleza 6 Puertas', precio:null, emoji:'🚪', desc:'Placard Fortaleza de 6 puertas y cajones. Amplia capacidad de guardado. Golden oregon, grafito teca.' },
+  { id:64, categoria:'placares-abrir', nombre:'Placard Benevento (2 a 6 puertas)', precio:94000, emoji:'🚪', desc:'Barral de aluminio. Colores: blanco alpino, moro, wengue. 2P $94.000 · 3P $140.000 · 4P $163.000 · 6P $221.000.' },
+  { id:18, categoria:'placares-abrir', nombre:'Combo Placard + Cómoda Infantil Fortaleza', precio:320000, emoji:'🎀', desc:'SET INFANTIL: Placard blanco con puertas rosas. 3 estantes + barra de colgado. Cómoda con 4 cajones amplios. Puertas batientes suaves.' },
 
   // CÓMODAS Y CHIFONIER
   { id:21, categoria:'comodas', nombre:'Cajonera Platinum 6 Cajones', precio:140000, emoji:'🗄️', desc:'Alto 1,16m · Ancho 0,62m · Prof 0,47m. 6 cajones con correderas metálicas. Colores: gris andino, savanna, blanco.' },
@@ -690,18 +704,6 @@ const productos = [
   { id:63, categoria:'descanso', nombre:'Respaldos (todas las medidas)', precio:35000, emoji:'🛏️', desc:'Tela Alpha antidesgarro. Colores: gris, azul, habano, beige. 0,80m $35.000 · 1,00m $41.000 · 1,40m $55.000 · 1,60m $63.000 · 1,80m $68.000 · 2,00m $75.000.' },
 
   // PLACARES — nuevos
-  { id:64, categoria:'placares', nombre:'Placard Benevento (2 a 6 puertas)', precio:94000, emoji:'🚪', desc:'Barral de aluminio. Colores: blanco alpino, moro, wengue. 2P $94.000 · 3P $140.000 · 4P $163.000 · 6P $221.000.' },
-  { id:65, categoria:'placares', nombre:'Placard Platinum 4 Puertas', precio:185000, emoji:'🚪', desc:'1,22m × 1,85m × 0,48m. 4P + 2 cajones · Barral aluminio · Correderas metálicas. Blanco, gris andino, savanna, roble antiguo.' },
-  { id:66, categoria:'placares', nombre:'Placard Platinum 6 Puertas', precio:271000, emoji:'🚪', desc:'1,81m × 1,85m × 0,55m. 6P + 2 cajones + barral + 5 estantes · Melamina 15. Fresno blanco.' },
-  { id:67, categoria:'placares', nombre:'Placard Corredizo 633 MAX 3 Puertas', precio:372000, emoji:'🚪', desc:'1,81m × 2,22m × 0,55m. 3 puertas corredizas · 3 cajones · Barral aluminio · Interior revestido. Savanna, gris andino.' },
-  { id:68, categoria:'placares', nombre:'Placard Tana Piu Corredizo (2P o 3P)', precio:293000, emoji:'🚪', desc:'2 puertas (1,13×1,90m) $293.000 · 3 puertas (1,72×1,90m) $419.000. Cajones + barral + interior revestido. Nevada, Fresno blanco, Moccha, Caffe.' },
-  { id:69, categoria:'placares', nombre:'Placard Tana Piu Alti (alto 2.20m)', precio:468000, emoji:'🚪', desc:'1,72m × 2,20m × 0,55m. Máxima capacidad. Blanco, Nevada, Caffe, Moccha, Fresno blanco.' },
-  { id:70, categoria:'placares', nombre:'Placard Suave Corredizo Nórdico', precio:483000, emoji:'🚪', desc:'1,85m × 1,90m × 0,55m. Diseño nórdico. Colores: blanco, Venecia, Jacaranda.' },
-  { id:71, categoria:'placares', nombre:'Placard Porto GR', precio:503000, emoji:'🚪', desc:'2,00m × 2,23m × 0,54m. 3 puertas corredizas · 4 cajones telescópicos · MDF · Excelente distribución interna. Con espejo $545.000.' },
-  { id:72, categoria:'placares', nombre:'Placard Montana', precio:405000, emoji:'🚪', desc:'1,77m × 2,13m × 0,50m. 2 puertas corredizas · 2 cajones telescópicos · MDF. Negro/beige · Negro/verde · Blanco brillo. Con espejo $448.000.' },
-  { id:73, categoria:'placares', nombre:'Placard Fortaleza 2 Puertas', precio:139000, emoji:'🚪', desc:'62,5cm × 1,80m × 47cm. 2 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
-  { id:74, categoria:'placares', nombre:'Placard Fortaleza 4 Puertas', precio:231000, emoji:'🚪', desc:'1,23m × 1,80m × 47cm. 4 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
-  { id:75, categoria:'placares', nombre:'Placard Fortaleza Corredizo 1.60m', precio:355000, emoji:'🚪', desc:'1,60m × 1,82m × 0,53m. 2 puertas corredizas. Golden oregon, grafito teca.' },
 
   // CÓMODAS Y CHIFONIER — nuevas
   { id:76, categoria:'comodas', nombre:'Chifonier Benevento', precio:73000, emoji:'🗄️', desc:'Blanco alpino / wengue. Modelo 3 cajones $73.000 · Modelo 4 cajones + 1 espacio $81.000.' },
@@ -743,7 +745,6 @@ const productos = [
   { id:315, categoria:'cocina', nombre:'Kit Compacto Turin', precio:180000, emoji:'🍳', desc:'Kit de cocina compacto: espacio para microondas, alacena y bajo mesada. Línea Turin. Blanco, Hickory, Nebraska.' },
   { id:316, categoria:'comodas', nombre:'Cómoda Tana Plus Pack', precio:null, emoji:'🗄️', desc:'Cómoda con cajones y puerta. Melamina reforzada. Consultá medidas y colores.' },
   { id:317, categoria:'infantil', nombre:'Mesa de Luz Fortaleza', precio:null, emoji:'🌙', desc:'Mesa de luz con 2 cajones y estante. Línea Fortaleza. Golden oregon, grafito teca.' },
-  { id:318, categoria:'placares', nombre:'Placard Fortaleza 6 Puertas', precio:null, emoji:'🚪', desc:'Placard Fortaleza de 6 puertas y cajones. Amplia capacidad de guardado. Golden oregon, grafito teca.' },
 ];
 
 // Modelos de colchón/sommier: 1 card con selector de tipo (colchón/sommier) y medida
@@ -751,10 +752,9 @@ const colchones = [
   { id:'terra', nombre:"Terra", img:null, spec:"Resorte Bonnel reforzado · 25cm · europillow · marco de acero · soporta 80kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:116000,sommier:160000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:143000,sommier:193000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:195000,sommier:249000}] },
   { id:'fantasia', nombre:"Fantasía Jaquard", img:'imgs/p24.jpg', spec:"Espuma · 26cm · tela jaquard gris · europillow", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:126000,sommier:170000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:152000,sommier:203000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:211000,sommier:265000}] },
   { id:'eurotop', nombre:"Eurotop", img:'imgs/n87.jpg', spec:"Espuma · doble europillow · tela azul con diseño · soporta 80kg", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:137000,sommier:181000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:169000,sommier:220000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:231000,sommier:285000}] },
-  { id:'skyfoam', nombre:"Sky Foam Black", img:'imgs/p29.jpg', spec:"Espuma · 30cm · tela jaquard negro y gris · doble europillow · soporta 90kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:149000,sommier:193000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:186000,sommier:236000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:261000,sommier:315000}] },
   { id:'skygrey', nombre:"Sky Grey TDP", img:'imgs/n86.jpg', spec:"Espuma alta · 30cm · 30kg densidad · doble europillow · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:182000,sommier:226000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:232000,sommier:283000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:319000,sommier:374000}, {m:'1,60×2,00',plaza:'Queen',colchon:376000,sommier:469000}, {m:'2,00×2,00',plaza:'King',colchon:475000,sommier:577000}] },
   { id:'skytotal', nombre:"Sky Total Negro", img:'imgs/n88.jpg', spec:"Espuma · 30cm · 30kg densidad · tela jaquard negro · doble europillow · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:172000,sommier:215000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:224000,sommier:274000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:302000,sommier:356000}, {m:'1,60×2,00',plaza:'Queen',colchon:362000,sommier:455000}, {m:'2,00×2,00',plaza:'King',colchon:455000,sommier:557000}] },
-  { id:'marea', nombre:"Marea Euro Top XL", img:null, spec:"Espuma poliuretano alta densidad · 33cm · 32kg densidad · doble euro top · soporta 120kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:217000,sommier:261000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:271000,sommier:321000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:371000,sommier:425000}, {m:'1,60×2,00',plaza:'Queen',colchon:449000,sommier:542000}, {m:'2,00×2,00',plaza:'King',colchon:574000,sommier:677000}] },
+  { id:'marea', nombre:"Marea Euro Top XL", img:'imgs/colchon-marea.jpg', spec:"Espuma poliuretano alta densidad · 33cm · 32kg densidad · doble euro top · soporta 120kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:217000,sommier:261000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:271000,sommier:321000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:371000,sommier:425000}, {m:'1,60×2,00',plaza:'Queen',colchon:449000,sommier:542000}, {m:'2,00×2,00',plaza:'King',colchon:574000,sommier:677000}] },
   { id:'sensacion', nombre:"Sensación Pillow Top", img:'imgs/n90.jpg', spec:"Espuma poliuretano alta densidad · 30cm · 35kg densidad · doble pillow top · soporta 130kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:224000,sommier:268000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:276000,sommier:326000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:371000,sommier:425000}, {m:'1,60×2,00',plaza:'Queen',colchon:455000,sommier:547000}, {m:'1,80×2,00',plaza:'Súper King',colchon:511000,sommier:609000}, {m:'2,00×2,00',plaza:'King',colchon:570000,sommier:672000}] },
   { id:'spring', nombre:"Resorte Spring", img:null, spec:"Resorte Bonnel reforzado · 30cm · doble europillow · doble marco de acero · soporta 110kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:180000,sommier:224000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:221000,sommier:271000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:314000,sommier:368000}, {m:'1,60×2,00',plaza:'Queen',colchon:378000,sommier:470000}] },
   { id:'realeza', nombre:"Realeza Exclusive", img:'imgs/n93.jpg', spec:"Resorte bicónico · 35cm · espuma viscoelástica de rápida recuperación · soporta 130kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:245000,sommier:289000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:336000,sommier:386000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:440000,sommier:494000}, {m:'1,60×2,00',plaza:'Queen',colchon:574000,sommier:666000}, {m:'2,00×2,00',plaza:'King',colchon:686000,sommier:788000}] },
@@ -848,7 +848,8 @@ const categorias = [
   { key:'mesas', label:'🪵 Mesas' },
   { key:'racks-tv', label:'📺 Racks y Muebles de TV' },
   { key:'living', label:'🛋️ Living, Sofás y Sillones' },
-  { key:'placares', label:'🚪 Placares' },
+  { key:'placares-corredizos', label:'🚪 Placares Corredizos' },
+  { key:'placares-abrir', label:'🚪 Placares de Abrir' },
   { key:'comodas', label:'🗄️ Cómodas y Chifonier' },
   { key:'cuchetas', label:'🛏️ Cuchetas' },
   { key:'descanso', label:'🛏️ Colchones y Sommiers' },
