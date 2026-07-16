@@ -548,7 +548,7 @@
   <button class="filtro-btn" data-key="descanso" onclick="filtrar('descanso')">Colchones y Sommiers</button>
   <button class="filtro-btn" data-key="cocina" onclick="filtrar('cocina')">Cocina</button>
   <button class="filtro-btn" data-key="escritorios" onclick="filtrar('escritorios')">Escritorios</button>
-  <button class="filtro-btn" data-key="infantil" onclick="filtrar('infantil')">Línea Infantil</button>
+  <button class="filtro-btn" data-key="mesas-luz" onclick="filtrar('mesas-luz')">Mesas de Luz</button>
 </div>
 
 <div class="catalogo" id="catalogo"></div>
@@ -620,6 +620,15 @@ const productos = [
   { id:11, categoria:'racks-tv', nombre:'Rack 557 (Modular TV 1.80m)', precio:238000, emoji:'📺', desc:'Rack 1,78m × 0,67m × 0,45m. Amplio espacio de guardado. Ideal para livings modernos.' },
   { id:12, categoria:'racks-tv', nombre:'Aparador 4 Puertas', precio:169000, emoji:'🪵', desc:'Aparador 1,45m de ancho. 4 puertas. Mueble multiuso para comedor o living. Consultá colores disponibles.' },
   { id:330, categoria:'racks-tv', nombre:'Bahiut Platinum', precio:187000, emoji:'🪵', desc:'Bahiut / credenza baja. Mueble multiuso para comedor o living. Consultá medidas y colores disponibles.' },
+  { id:340, categoria:'racks-tv', nombre:'Home 3 Estrellas (Richezze)', precio:320000, emoji:'📺', desc:'Home modular para TV con panel, estantes y cajones. Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:341, categoria:'racks-tv', nombre:'Home Bali (Richezze)', precio:175000, emoji:'📺', desc:'Home modular para TV con panel y espacio de guardado. Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:342, categoria:'racks-tv', nombre:'Home Torino (Richezze)', precio:248000, emoji:'📺', desc:'Home modular para TV hasta 70". Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:343, categoria:'racks-tv', nombre:'Home Verona (Richezze)', precio:299000, emoji:'📺', desc:'Home modular para TV con panel y estantes. Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:344, categoria:'racks-tv', nombre:'Rack Roma (Richezze)', precio:159000, emoji:'📺', desc:'Rack de TV con patas de madera, puertas y espacios abiertos. Estilo nórdico. Línea Richezze. Consultá colores disponibles.' },
+  { id:345, categoria:'racks-tv', nombre:'Rack Málaga (Richezze)', precio:89000, emoji:'📺', desc:'Rack de TV hasta 55" con patas de madera. Estilo nórdico. Línea Richezze. Consultá colores disponibles.' },
+  { id:346, categoria:'racks-tv', nombre:'Aparador 3 Puertas Retro (Richezze)', precio:124000, emoji:'🪵', desc:'Aparador de 3 puertas con frente ranurado y patas de madera. Estilo retro. Línea Richezze. Consultá colores disponibles.' },
+  { id:347, categoria:'racks-tv', nombre:'Aparador 4 Puertas Retro (Richezze)', precio:159000, emoji:'🪵', desc:'Aparador de 4 puertas con frente ranurado y patas de madera. Estilo retro. Línea Richezze. Consultá colores disponibles.' },
+  { id:348, categoria:'racks-tv', nombre:'Bahiut Richezze', precio:199000, emoji:'🪵', desc:'Bahiut / mueble bajo con puertas y espacios abiertos. Línea Richezze. Consultá medidas y colores disponibles.' },
   { id:41, categoria:'racks-tv', nombre:'Modular TV 2.30m', precio:367000, emoji:'📺', desc:'Modular TV 2300 · 1,88m alto × 2,30m ancho × 0,42m prof. Gran capacidad de guardado. Hasta 75".' },
   { id:42, categoria:'racks-tv', nombre:'Modular Rack 553 (4 Puertas)', precio:210000, emoji:'📺', desc:'Rack modular 1,51m × 1,82m × 0,36m. Cajón con correderas metálicas + 4 puertas. Hasta 43".' },
   { id:43, categoria:'cocina', nombre:'Mueble Microondas', precio:89000, emoji:'🍳', desc:'Gabinete microondas 0,60m × 1,21m × 0,44m. 2 puertas y 2 estantes. Espacio para microondas.' },
@@ -629,7 +638,7 @@ const productos = [
 
   // PLACARES
   { id:68, categoria:'placares-corredizos', nombre:'Placard Tana Piu Corredizo (2P o 3P)', precio:293000, emoji:'🚪', desc:'2 puertas (1,13×1,90m) $293.000 · 3 puertas (1,72×1,90m) $419.000. Cajones + barral + interior revestido. Nevada, Fresno blanco, Moccha, Caffe.' },
-  { id:20, categoria:'placares-corredizos', nombre:'Placard Corredizo MAX 2 Puertas 1.21×2.22', precio:246000, emoji:'🚪', desc:'2 puertas corredizas. Alto 2,22m · Ancho 1,21m · Prof 0,55m. Correderas metálicas + barral aluminio. Colores: blanco, gris andino.' },
+  { id:20, categoria:'placares-corredizos', nombre:'Placard Corredizo 632 MAX 2 Puertas', precio:246000, emoji:'🚪', desc:'2 puertas corredizas. Alto 2,22m · Ancho 1,21m · Prof 0,55m. Correderas metálicas + barral aluminio. Colores: blanco, gris andino.' },
   { id:75, categoria:'placares-corredizos', nombre:'Placard Fortaleza Corredizo 1.60m', precio:355000, emoji:'🚪', desc:'1,60m × 1,82m × 0,53m. 2 puertas corredizas. Golden oregon, grafito teca.' },
   { id:69, categoria:'placares-corredizos', nombre:'Placard Tana Piu Alti (alto 2.20m)', precio:468000, emoji:'🚪', desc:'1,72m × 2,20m × 0,55m. Máxima capacidad. Blanco, Nevada, Caffe, Moccha, Fresno blanco.' },
   { id:72, categoria:'placares-corredizos', nombre:'Placard Montana', precio:405000, emoji:'🚪', desc:'1,77m × 2,13m × 0,50m. 2 puertas corredizas · 2 cajones telescópicos · MDF. Negro/beige · Negro/verde · Blanco brillo. Con espejo $448.000.' },
@@ -675,7 +684,7 @@ const productos = [
   { id:329, categoria:'escritorios', nombre:'Gabinete Funcional Platinum', precio:75000, emoji:'🗃️', desc:'Gabinete funcional 2 puertas. Melamina, forrado por dentro. Consultá medidas y colores disponibles.' },
 
   // LÍNEA INFANTIL
-  { id:40, categoria:'infantil', nombre:'Mesa de Luz Flotante', precio:38000, emoji:'🌙', desc:'Alto 0,32m · Ancho 0,45m · Prof 0,33m. 1 cajón + 1 estante. Revestida por dentro. Colores: blanco, hickory negro/blanco, pino blanco.' },
+  { id:40, categoria:'mesas-luz', nombre:'Mesa de Luz Flotante', precio:38000, emoji:'🌙', desc:'Alto 0,32m · Ancho 0,45m · Prof 0,33m. 1 cajón + 1 estante. Revestida por dentro. Colores: blanco, hickory negro/blanco, pino blanco.' },
 
   // COMBOS MESAS Y SILLAS — nuevos
   { id:50, categoria:'combos-mesas', nombre:'Mesa Redonda Vidrio + 4 Sillas', precio:269000, emoji:'🪑', desc:'Patas madera haya maciza · Hierros reforzados · Tapa vidrio templado · Sillas a elección: Eames, Tulip, Milan o Windsor. 1,00m desde $269.000 · 1,20m desde $290.000.' },
@@ -737,17 +746,18 @@ const productos = [
   { id:102, categoria:'escritorios', nombre:'Rack TV Compacto 1.05m', precio:97000, emoji:'📺', desc:'1,05m × 0,67m × 0,40m. Hasta 40". Ideal para dormitorios y cuartos.' },
 
   // MESAS DE LUZ — nuevas
-  { id:103, categoria:'infantil', nombre:'Mesa de Luz Benevento', precio:34000, emoji:'🌙', desc:'50cm × 45cm × 30cm. 1 cajón. Revestida por dentro. Blanco alpino o wengue.' },
-  { id:104, categoria:'infantil', nombre:'Mesa de Luz Tana Piu', precio:63000, emoji:'🌙', desc:'62cm × 45cm × 39cm. 1 cajón + 1 puerta. Revestida. Blanco, Nevada, Fresno, Caffe, Moccha.' },
-  { id:105, categoria:'infantil', nombre:'Mesa de Luz Platinum', precio:59000, emoji:'🌙', desc:'65cm × 45cm × 45cm. 1 cajón + 1 estante + 1 puerta. Revestida. Blanco, savanna, gris andino.' },
+  { id:103, categoria:'mesas-luz', nombre:'Mesa de Luz Benevento', precio:34000, emoji:'🌙', desc:'50cm × 45cm × 30cm. 1 cajón. Revestida por dentro. Blanco alpino o wengue.' },
+  { id:104, categoria:'mesas-luz', nombre:'Mesa de Luz Tana Piu', precio:63000, emoji:'🌙', desc:'62cm × 45cm × 39cm. 1 cajón + 1 puerta. Revestida. Blanco, Nevada, Fresno, Caffe, Moccha.' },
+  { id:105, categoria:'mesas-luz', nombre:'Mesa de Luz Platinum', precio:59000, emoji:'🌙', desc:'65cm × 45cm × 45cm. 1 cajón + 1 estante + 1 puerta. Revestida. Blanco, savanna, gris andino.' },
   { id:310, categoria:'escritorios', nombre:'Biblioteca con Puertas', precio:null, emoji:'📚', desc:'Biblioteca con estantes superiores y puertas inferiores. Ideal para living, estudio u oficina. Consultá medidas y colores.' },
-  { id:311, categoria:'escritorios', nombre:'Escritorio Camarín con Espejo (Tocador)', precio:null, emoji:'🪞', desc:'Escritorio tocador con espejo y cajones. Disponible en 0,90m y 1,30m. Consultá colores disponibles.' },
+  { id:311, categoria:'escritorios', nombre:'Escritorio Camarín con Espejo (Tocador)', precio:159000, emoji:'🪞', desc:'Escritorio tocador con espejo y cajones. Disponible en 0,90m y 1,30m. Consultá colores disponibles.' },
+  { id:331, categoria:'escritorios', nombre:'Maquillador 1 Cajón', precio:120000, emoji:'🪞', desc:'Maquillador con espejo abatible y compartimento de guardado interior + 1 cajón. Ideal para dormitorio. Consultá colores disponibles.' },
   { id:312, categoria:'racks-tv', nombre:'Rack TV 2 Puertas Corredizas', precio:199000, emoji:'📺', desc:'Rack de TV con 2 puertas corredizas y espacios abiertos. Consultá medidas y colores.' },
-  { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:199000, emoji:'📺', desc:'Rack modular para TV. Consultá medidas y colores disponibles.' },
-  { id:314, categoria:'racks-tv', nombre:'Home Scaletta', precio:299000, emoji:'📺', desc:'Panel/home modular para TV con estantes. Consultá medidas y colores.' },
+  { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:189000, emoji:'📺', desc:'Rack modular para TV. Consultá medidas y colores disponibles.' },
+  { id:314, categoria:'racks-tv', nombre:'Home Scaletta', precio:315000, emoji:'📺', desc:'Panel/home modular para TV con estantes. Consultá medidas y colores.' },
   { id:315, categoria:'cocina', nombre:'Kit Compacto Turin', precio:180000, emoji:'🍳', desc:'Kit de cocina compacto: espacio para microondas, alacena y bajo mesada. Línea Turin. Blanco, Hickory, Nebraska.' },
   { id:316, categoria:'comodas', nombre:'Cómoda Tana Plus Pack', precio:null, emoji:'🗄️', desc:'Cómoda con cajones y puerta. Melamina reforzada. Consultá medidas y colores.' },
-  { id:317, categoria:'infantil', nombre:'Mesa de Luz Fortaleza', precio:null, emoji:'🌙', desc:'Mesa de luz con 2 cajones y estante. Línea Fortaleza. Golden oregon, grafito teca.' },
+  { id:317, categoria:'mesas-luz', nombre:'Mesa de Luz Fortaleza', precio:null, emoji:'🌙', desc:'Mesa de luz con 2 cajones y estante. Línea Fortaleza. Golden oregon, grafito teca.' },
 ];
 
 // Modelos de colchón/sommier: 1 card con selector de tipo (colchón/sommier) y medida
@@ -784,8 +794,8 @@ const imgMap = {
   15:'imgs/p14.jpg',
   16:['imgs/esquinero-bassic-1.jpg','imgs/esquinero-bassic-2.jpg'],
   17:'imgs/placard-fort-3p.jpg',
-  18:'imgs/p17.jpg',
-  20:'imgs/p26.jpg',
+   18:['imgs/combo-infantil-1.jpg','imgs/combo-infantil-2.jpg'],
+   20:'imgs/placard-632-max-2p.jpg',
   21:'imgs/cajonera-platinum.jpg',
   22:'imgs/arcon-platinum.jpg',
   23:'imgs/chifonier-platinum.jpg',
@@ -822,6 +832,16 @@ const imgMap = {
   105:'imgs/mesaluz-platinum.jpg',
   329:'imgs/gabinete-funcional.jpg',
   330:'imgs/bahiut-platinum.jpg',
+  331:'imgs/maquillador.jpg',
+  340:'imgs/home-3estrellas.jpg',
+  341:'imgs/home-bali.jpg',
+  342:'imgs/home-torino.jpg',
+  343:'imgs/home-verona.jpg',
+  344:'imgs/rack-roma.jpg',
+  345:'imgs/rack-malaga.jpg',
+  346:['imgs/aparador-3p-retro-1.jpg','imgs/aparador-3p-retro-2.jpg'],
+  347:'imgs/aparador-4p-retro.jpg',
+  348:['imgs/bahiut-richezze-1.jpg','imgs/bahiut-richezze-2.jpg'],
   42:'imgs/rack-553.jpg',
   46:'imgs/placard-base-2p.jpg',
   328:'imgs/zapatero-platinum.jpg',
@@ -833,7 +853,7 @@ const imgMap = {
   320:['imgs/comedor-marmolado-1.jpg','imgs/comedor-marmolado-2.jpg'],
   321:'imgs/comedor-madera-vogue.jpg',
   322:'imgs/comedor-madera-gris.jpg',
-  306:['imgs/silla-bari-1.jpg','imgs/silla-bari-2.jpg'],
+  306:'imgs/silla-bari-1.jpg',
   307:'imgs/silla-vogue.jpg',
   325:'imgs/silla-class.jpg',
   300:'imgs/sill-cami.jpg',
@@ -841,10 +861,10 @@ const imgMap = {
   303:'imgs/sill-nordico.jpg',
   304:'imgs/sill-sofacama.jpg',
   310:['imgs/biblio-puertas-1.jpg','imgs/biblio-puertas-2.jpg'],
-  311:['imgs/esc-camarin-090.jpg','imgs/esc-camarin-130.jpg'],
+  311:['imgs/esc-camarin-3.jpg','imgs/esc-camarin-090.jpg','imgs/esc-camarin-130.jpg'],
   312:['imgs/rack-corredizas-1.jpg','imgs/rack-corredizas-2.jpg'],
-  313:'imgs/rack-mundial.jpg',
-  314:'imgs/home-scaletta.jpg',
+   313:'imgs/rack-mundial-new.jpg',
+   314:'imgs/home-scaletta-new.jpg',
   315:['imgs/kit-compacto-turin-1.jpg','imgs/kit-compacto-turin-2.jpg','imgs/kit-compacto-turin-3.jpg'],
   316:'imgs/comoda-tana-pluspack.jpg',
   317:'imgs/mesaluz-fortaleza.jpg',
@@ -864,7 +884,7 @@ const categorias = [
   { key:'descanso', label:'🛏️ Colchones y Sommiers' },
   { key:'cocina', label:'🍳 Muebles de Cocina' },
   { key:'escritorios', label:'📖 Escritorios y Bibliotecas' },
-  { key:'infantil', label:'🌟 Línea Infantil' },
+  { key:'mesas-luz', label:'🌙 Mesas de Luz' },
 ];
 
 function formatPeso(n) {
