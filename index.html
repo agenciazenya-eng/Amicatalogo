@@ -548,6 +548,7 @@
   <button class="filtro-btn" data-key="descanso" onclick="filtrar('descanso')">Colchones y Sommiers</button>
   <button class="filtro-btn" data-key="cocina" onclick="filtrar('cocina')">Cocina</button>
   <button class="filtro-btn" data-key="escritorios" onclick="filtrar('escritorios')">Escritorios</button>
+  <button class="filtro-btn" data-key="bibliotecas" onclick="filtrar('bibliotecas')">Bibliotecas y Módulos</button>
   <button class="filtro-btn" data-key="mesas-luz" onclick="filtrar('mesas-luz')">Mesas de Luz</button>
 </div>
 
@@ -674,10 +675,27 @@ const productos = [
   { id:34, categoria:'cocina', nombre:'Alacena + Bajo Mesada Turin 1.40m', precio:229000, emoji:'🍳', desc:'Alacena 1,40m ($66.000) + bajo mesada 1,40m ($99.000). Melamina. Con o sin marmolina. Colores a elección.' },
 
   // ESCRITORIOS
-  { id:35, categoria:'escritorios', nombre:'Escritorio 1m con 2 Cajones y Llave (Platinum)', precio:139000, emoji:'📖', desc:'1,00m × 0,74m × 0,70m. 2 cajones con cerradura. Superior con llave. Combo escritorio + biblioteca disponible.' },
-  { id:36, categoria:'escritorios', nombre:'Biblioteca Eco 5 Niveles', precio:59000, emoji:'📖', desc:'0,61m × 1,70m × 0,25m. 5 estantes. Melamina. Consultá colores disponibles.' },
+  { id:351, categoria:'escritorios', nombre:'Escritorio 0.90 sin Cajón (Richezze)', precio:60000, emoji:'📖', desc:'Escritorio compacto de 0,90m, sin cajones. Línea Richezze. Consultá colores disponibles.' },
   { id:37, categoria:'escritorios', nombre:'Escritorio Notebook', precio:65000, emoji:'📖', desc:'1,00m × 0,75m × 0,45m. 1 estante + 1 cajón. Diseño compacto ideal para home office.' },
+  { id:352, categoria:'escritorios', nombre:'Escritorio Mesina 1 Cajón', precio:75000, emoji:'📖', desc:'Escritorio Mesina con 1 cajón. Consultá medidas y colores disponibles.' },
+  { id:365, categoria:'escritorios', nombre:'Escritorio Mesina 0.90 (Richezze)', precio:75000, emoji:'📖', desc:'Escritorio Mesina de 0,90m con cajón y estante. Línea Richezze. Consultá colores disponibles.' },
+  { id:353, categoria:'escritorios', nombre:'Escritorio Notebook (Richezze)', precio:75000, emoji:'📖', desc:'Escritorio para notebook con cajón y estante. Línea Richezze. Consultá colores disponibles.' },
+  { id:354, categoria:'escritorios', nombre:'Escritorio Gamer', precio:99000, emoji:'🎮', desc:'Escritorio gamer con estante superior y detalles en color. Consultá medidas y colores disponibles.' },
+  { id:355, categoria:'escritorios', nombre:'Escritorio 2 Cajones', precio:105000, emoji:'📖', desc:'Escritorio con 2 cajones. Consultá medidas y colores disponibles.' },
+  { id:356, categoria:'escritorios', nombre:'Escritorio 1.20 (Richezze)', precio:110000, emoji:'📖', desc:'Escritorio de 1,20m con cajones. Línea Richezze. Consultá colores disponibles.' },
+  { id:357, categoria:'escritorios', nombre:'Escritorio 109 (Richezze)', precio:110000, emoji:'📖', desc:'Escritorio modelo 109 con puerta/gabinete. Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:358, categoria:'escritorios', nombre:'Escritorio 1.20 con 2 Cajones (Richezze)', precio:119000, emoji:'📖', desc:'Escritorio de 1,20m con 2 cajones. Línea Richezze. Consultá colores disponibles.' },
+  { id:359, categoria:'escritorios', nombre:'Escritorio 3 Cajones (Richezze)', precio:125000, emoji:'📖', desc:'Escritorio con 3 cajones. Línea Richezze. Consultá medidas y colores disponibles.' },
+  { id:35, categoria:'escritorios', nombre:'Escritorio 1m con 2 Cajones y Llave (Platinum)', precio:139000, emoji:'📖', desc:'1,00m × 0,74m × 0,70m. 2 cajones con cerradura. Superior con llave. Combo escritorio + biblioteca disponible.' },
   { id:38, categoria:'escritorios', nombre:'Escritorios — Varios Modelos', precio:null, emoji:'📖', desc:'Distintos modelos disponibles. Consultanos por el que más te guste.' },
+  { id:331, categoria:'escritorios', nombre:'Maquillador 1 Cajón', precio:120000, emoji:'🪞', desc:'Maquillador con espejo abatible y compartimento de guardado interior + 1 cajón. Ideal para dormitorio. Consultá colores disponibles.' },
+  { id:311, categoria:'escritorios', nombre:'Escritorio Camarín con Espejo (Tocador)', precio:159000, emoji:'🪞', desc:'Escritorio tocador con espejo y cajones. Disponible en 0,90m y 1,30m. Consultá colores disponibles.' },
+  { id:332, categoria:'escritorios', nombre:'Maquillador Hollywood', precio:199000, emoji:'🪞', desc:'Maquillador con espejo con luces tipo Hollywood y 3 cajones. Ideal para dormitorio. Consultá medidas y colores disponibles.' },
+  { id:36, categoria:'bibliotecas', nombre:'Biblioteca Eco 5 Niveles', precio:59000, emoji:'📖', desc:'0,61m × 1,70m × 0,25m. 5 estantes. Melamina. Consultá colores disponibles.' },
+  { id:350, categoria:'bibliotecas', nombre:'Biblioteca 12 Espacios', precio:117000, emoji:'📚', desc:'Biblioteca de 12 espacios con diseño de estantes combinados. Ideal para living, estudio u oficina. Consultá colores disponibles.' },
+  { id:361, categoria:'bibliotecas', nombre:'Módulo Calabria Cajones', precio:135000, emoji:'🗄️', desc:'Módulo Calabria con estantes y cajones. Estructura de madera, estilo nórdico. Consultá medidas y colores.' },
+  { id:362, categoria:'bibliotecas', nombre:'Módulo Calabria Puertas', precio:149000, emoji:'🗄️', desc:'Módulo Calabria con estantes y puertas. Estructura de madera, estilo nórdico. Consultá medidas y colores.' },
+  { id:310, categoria:'bibliotecas', nombre:'Biblioteca con Puertas', precio:166000, emoji:'📚', desc:'Biblioteca con estantes superiores y puertas inferiores. Ideal para living, estudio u oficina. Consultá medidas y colores.' },
   { id:39, categoria:'cocina', nombre:'Gabinete Multiuso 2 Puertas 4 Estantes', precio:89000, emoji:'🗃️', desc:'0,61m × 1,83m × 0,31m. 2 puertas + 4 estantes. Forrado por dentro. Ideal para distintos ambientes.' },
   { id:329, categoria:'cocina', nombre:'Gabinete Funcional Platinum', precio:75000, emoji:'🗃️', desc:'Gabinete funcional 2 puertas. Melamina, forrado por dentro. Consultá medidas y colores disponibles.' },
 
@@ -749,23 +767,6 @@ const productos = [
   { id:103, categoria:'mesas-luz', nombre:'Mesa de Luz Benevento', precio:34000, emoji:'🌙', desc:'50cm × 45cm × 30cm. 1 cajón. Revestida por dentro. Blanco alpino o wengue.' },
   { id:104, categoria:'mesas-luz', nombre:'Mesa de Luz Tana Piu', precio:63000, emoji:'🌙', desc:'62cm × 45cm × 39cm. 1 cajón + 1 puerta. Revestida. Blanco, Nevada, Fresno, Caffe, Moccha.' },
   { id:105, categoria:'mesas-luz', nombre:'Mesa de Luz Platinum', precio:59000, emoji:'🌙', desc:'65cm × 45cm × 45cm. 1 cajón + 1 estante + 1 puerta. Revestida. Blanco, savanna, gris andino.' },
-  { id:310, categoria:'escritorios', nombre:'Biblioteca con Puertas', precio:166000, emoji:'📚', desc:'Biblioteca con estantes superiores y puertas inferiores. Ideal para living, estudio u oficina. Consultá medidas y colores.' },
-  { id:311, categoria:'escritorios', nombre:'Escritorio Camarín con Espejo (Tocador)', precio:159000, emoji:'🪞', desc:'Escritorio tocador con espejo y cajones. Disponible en 0,90m y 1,30m. Consultá colores disponibles.' },
-  { id:331, categoria:'escritorios', nombre:'Maquillador 1 Cajón', precio:120000, emoji:'🪞', desc:'Maquillador con espejo abatible y compartimento de guardado interior + 1 cajón. Ideal para dormitorio. Consultá colores disponibles.' },
-  { id:332, categoria:'escritorios', nombre:'Maquillador Hollywood', precio:199000, emoji:'🪞', desc:'Maquillador con espejo con luces tipo Hollywood y 3 cajones. Ideal para dormitorio. Consultá medidas y colores disponibles.' },
-  { id:350, categoria:'escritorios', nombre:'Biblioteca 12 Espacios', precio:117000, emoji:'📚', desc:'Biblioteca de 12 espacios con diseño de estantes combinados. Ideal para living, estudio u oficina. Consultá colores disponibles.' },
-  { id:351, categoria:'escritorios', nombre:'Escritorio 0.90 sin Cajón (Richezze)', precio:60000, emoji:'📖', desc:'Escritorio compacto de 0,90m, sin cajones. Línea Richezze. Consultá colores disponibles.' },
-  { id:352, categoria:'escritorios', nombre:'Escritorio Mesina 1 Cajón', precio:75000, emoji:'📖', desc:'Escritorio Mesina con 1 cajón. Consultá medidas y colores disponibles.' },
-  { id:365, categoria:'escritorios', nombre:'Escritorio Mesina 0.90 (Richezze)', precio:75000, emoji:'📖', desc:'Escritorio Mesina de 0,90m con cajón y estante. Línea Richezze. Consultá colores disponibles.' },
-  { id:353, categoria:'escritorios', nombre:'Escritorio Notebook (Richezze)', precio:75000, emoji:'📖', desc:'Escritorio para notebook con cajón y estante. Línea Richezze. Consultá colores disponibles.' },
-  { id:354, categoria:'escritorios', nombre:'Escritorio Gamer', precio:99000, emoji:'🎮', desc:'Escritorio gamer con estante superior y detalles en color. Consultá medidas y colores disponibles.' },
-  { id:355, categoria:'escritorios', nombre:'Escritorio 2 Cajones', precio:105000, emoji:'📖', desc:'Escritorio con 2 cajones. Consultá medidas y colores disponibles.' },
-  { id:356, categoria:'escritorios', nombre:'Escritorio 1.20 (Richezze)', precio:110000, emoji:'📖', desc:'Escritorio de 1,20m con cajones. Línea Richezze. Consultá colores disponibles.' },
-  { id:357, categoria:'escritorios', nombre:'Escritorio 109 (Richezze)', precio:110000, emoji:'📖', desc:'Escritorio modelo 109 con puerta/gabinete. Línea Richezze. Consultá medidas y colores disponibles.' },
-  { id:358, categoria:'escritorios', nombre:'Escritorio 1.20 con 2 Cajones (Richezze)', precio:119000, emoji:'📖', desc:'Escritorio de 1,20m con 2 cajones. Línea Richezze. Consultá colores disponibles.' },
-  { id:359, categoria:'escritorios', nombre:'Escritorio 3 Cajones (Richezze)', precio:125000, emoji:'📖', desc:'Escritorio con 3 cajones. Línea Richezze. Consultá medidas y colores disponibles.' },
-  { id:361, categoria:'escritorios', nombre:'Módulo Calabria Cajones', precio:135000, emoji:'🗄️', desc:'Módulo Calabria con estantes y cajones. Estructura de madera, estilo nórdico. Consultá medidas y colores.' },
-  { id:362, categoria:'escritorios', nombre:'Módulo Calabria Puertas', precio:149000, emoji:'🗄️', desc:'Módulo Calabria con estantes y puertas. Estructura de madera, estilo nórdico. Consultá medidas y colores.' },
   { id:312, categoria:'racks-tv', nombre:'Rack TV 2 Puertas Corredizas', precio:199000, emoji:'📺', desc:'Rack de TV con 2 puertas corredizas y espacios abiertos. Consultá medidas y colores.' },
   { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:189000, emoji:'📺', desc:'Rack modular para TV. Consultá medidas y colores disponibles.' },
   { id:314, categoria:'racks-tv', nombre:'Home Scaletta', precio:315000, emoji:'📺', desc:'Panel/home modular para TV con estantes. Consultá medidas y colores.' },
@@ -913,7 +914,8 @@ const categorias = [
   { key:'cuchetas', label:'🛏️ Cuchetas' },
   { key:'descanso', label:'🛏️ Colchones y Sommiers' },
   { key:'cocina', label:'🍳 Muebles de Cocina' },
-  { key:'escritorios', label:'📖 Escritorios y Bibliotecas' },
+  { key:'escritorios', label:'📖 Escritorios y Maquilladores' },
+  { key:'bibliotecas', label:'📚 Bibliotecas y Módulos' },
   { key:'mesas-luz', label:'🌙 Mesas de Luz' },
 ];
 
