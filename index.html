@@ -430,7 +430,49 @@
   .volver-btn:hover { text-decoration: underline; }
 
   /* BUSCADOR */
-  .buscador-wrap { background: white; padding: 12px 16px 0; }
+  .buscador-wrap { background: white; padding: 12px 16px 0; position: relative; }
+
+  /* SUGERENCIAS */
+  .sugerencias {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    width: calc(100% - 32px); max-width: 620px;
+    background: white; border: 1px solid var(--borde); border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.14); z-index: 200; overflow: hidden;
+    display: none; margin-top: 6px;
+  }
+  .sugerencias.abierto { display: block; }
+  .sug-item {
+    padding: 10px 14px; cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--borde);
+  }
+  .sug-item:last-child { border-bottom: none; }
+  .sug-item:hover { background: var(--crema); }
+  .sug-img { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; background: #f0ede8; flex-shrink: 0; }
+  .sug-txt { flex: 1; min-width: 0; }
+  .sug-nombre { font-size: 13.5px; font-weight: 700; color: var(--marino); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sug-cat { font-size: 11px; color: var(--gris); }
+  .sug-precio { font-size: 13px; font-weight: 800; color: var(--rojo); white-space: nowrap; }
+
+  /* BARRA DE ORDEN / SCOPE */
+  .barra-orden {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 18px; font-size: 13px; color: var(--gris);
+  }
+  .barra-orden select {
+    border: 1px solid var(--borde); border-radius: 8px; padding: 7px 10px;
+    font-size: 13px; font-family: inherit; color: var(--marino);
+    background: white; cursor: pointer; font-weight: 600;
+  }
+  .barra-orden select:focus { outline: none; border-color: var(--rojo); }
+  .scope-nota {
+    background: #fde8e8; border-radius: 50px; padding: 5px 12px;
+    font-size: 12px; color: var(--marino); font-weight: 600;
+  }
+  .scope-nota button {
+    background: none; border: none; color: var(--rojo); font-weight: 800;
+    cursor: pointer; font-size: 12px; padding: 0 0 0 8px; font-family: inherit;
+  }
+  .scope-nota button:hover { text-decoration: underline; }
   .buscador {
     max-width: 620px; margin: 0 auto;
     display: flex; align-items: center; gap: 10px;
@@ -529,9 +571,10 @@
 <div class="buscador-wrap">
   <div class="buscador">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="buscador" type="search" placeholder="Buscar producto…" oninput="buscar(this.value)" autocomplete="off">
+    <input id="buscador" type="search" placeholder="Buscar producto…" oninput="buscar(this.value)" onfocus="renderSugerencias(this.value)" autocomplete="off">
     <button class="buscador-clear" id="buscadorClear" onclick="limpiarBusqueda()" style="display:none">×</button>
   </div>
+  <div class="sugerencias" id="sugerencias"></div>
 </div>
 
 <div class="filtros" id="filtros">
@@ -1070,6 +1113,81 @@ function renderHome() {
   document.getElementById('catalogo').innerHTML = html;
 }
 
+// ----- ORDEN POR PRECIO -----
+let ordenActual = 'destacados';
+function setOrden(v) { ordenActual = v; render(); }
+function aplicarOrden(arr) {
+  if (ordenActual === 'destacados') return arr;
+  const conP = arr.filter(x => x.precio), sinP = arr.filter(x => !x.precio);
+  conP.sort((a,b) => ordenActual === 'menor' ? a.precio - b.precio : b.precio - a.precio);
+  return [...conP, ...sinP];
+}
+function precioMinColchon(m) { return Math.min(...m.medidas.map(md => md.colchon)); }
+function aplicarOrdenColchones(arr) {
+  if (ordenActual === 'destacados') return arr;
+  const c = [...arr];
+  c.sort((a,b) => ordenActual === 'menor' ? precioMinColchon(a) - precioMinColchon(b) : precioMinColchon(b) - precioMinColchon(a));
+  return c;
+}
+function barraOrdenHTML(scopeLabel) {
+  const opt = (v,t) => `<option value="${v}"${ordenActual===v?' selected':''}>${t}</option>`;
+  let html = `<div class="barra-orden">`;
+  if (scopeLabel) html += `<span class="scope-nota">Buscando en: ${scopeLabel}<button onclick="buscarEnTodo()">Ver todo el catálogo</button></span>`;
+  html += `<span>Ordenar por:</span><select onchange="setOrden(this.value)">${opt('destacados','Destacados')}${opt('menor','Menor precio')}${opt('mayor','Mayor precio')}</select></div>`;
+  return html;
+}
+
+// ----- SUGERENCIAS -----
+let sugActuales = [];
+function cerrarSugerencias() {
+  const box = document.getElementById('sugerencias');
+  if (box) { box.classList.remove('abierto'); box.innerHTML = ''; }
+}
+function renderSugerencias(q) {
+  const box = document.getElementById('sugerencias');
+  q = (q||'').trim();
+  if (!box) return;
+  if (q.length < 2) { cerrarSugerencias(); return; }
+  const nq = norm(q);
+  sugActuales = [];
+  colchones.forEach(m => {
+    if (norm(m.nombre).includes(nq)) sugActuales.push({ label: m.nombre, cat: 'Colchones y Sommiers', img: m.img, precio: precioMinColchon(m), desde: true });
+  });
+  productos.forEach(p => {
+    if (norm(p.nombre).includes(nq)) {
+      const c = categorias.find(c => c.key === p.categoria);
+      sugActuales.push({ label: p.nombre, cat: c ? c.label.replace(/^\S+\s/,'') : '', img: imgList(p.id)[0], precio: p.precio });
+    }
+  });
+  sugActuales = sugActuales.slice(0, 6);
+  if (!sugActuales.length) { cerrarSugerencias(); return; }
+  box.innerHTML = sugActuales.map((it,i) => `
+    <div class="sug-item" onclick="irASugerencia(${i})">
+      ${it.img ? `<img class="sug-img" src="${it.img}" alt="">` : `<div class="sug-img"></div>`}
+      <div class="sug-txt">
+        <div class="sug-nombre">${it.label}</div>
+        <div class="sug-cat">${it.cat}</div>
+      </div>
+      ${it.precio ? `<div class="sug-precio">${it.desde?'desde ':''}${formatPeso(it.precio)}</div>` : `<div class="sug-cat">Consultá</div>`}
+    </div>`).join('');
+  box.classList.add('abierto');
+}
+function irASugerencia(i) {
+  const it = sugActuales[i];
+  if (!it) return;
+  document.getElementById('buscador').value = it.label;
+  busquedaActiva = it.label;
+  filtroActual = 'inicio';
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('buscadorClear').style.display = 'block';
+  cerrarSugerencias();
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.buscador-wrap')) cerrarSugerencias();
+});
+
 function renderCatalogo(filtro) {
   let html = '';
   if (filtro !== 'todos' && filtro !== 'inicio') {
@@ -1077,11 +1195,13 @@ function renderCatalogo(filtro) {
   }
   const cats = filtro === 'todos' ? categorias : categorias.filter(c => c.key === filtro);
   cats.forEach(cat => {
-    const items = productos.filter(p => p.categoria === cat.key);
+    const items = aplicarOrden(productos.filter(p => p.categoria === cat.key));
     const esDescanso = cat.key === 'descanso';
     if (!items.length && !esDescanso) return;
-    html += `<h2 class="categoria-titulo">${cat.label}</h2><div class="grid">`;
-    if (esDescanso) colchones.forEach(m => { html += renderColchonCard(m); });
+    html += `<h2 class="categoria-titulo">${cat.label}</h2>`;
+    if (filtro !== 'todos') html += barraOrdenHTML(null);
+    html += `<div class="grid">`;
+    if (esDescanso) aplicarOrdenColchones(colchones).forEach(m => { html += renderColchonCard(m); });
     items.forEach(p => { html += cardHTML(p); });
     html += '</div>';
   });
@@ -1090,12 +1210,22 @@ function renderCatalogo(filtro) {
 
 function renderBusqueda(q) {
   const nq = norm(q);
-  const cols = colchones.filter(m => norm(m.nombre).includes(nq) || norm(m.spec).includes(nq) || norm('colchon sommier colchones sommiers').includes(nq));
-  const prods = productos.filter(p => norm(p.nombre).includes(nq) || norm(p.desc).includes(nq));
+  const enCat = (filtroActual !== 'inicio' && filtroActual !== 'todos');
+  const catObj = enCat ? categorias.find(c => c.key === filtroActual) : null;
+  let cols = colchones.filter(m => norm(m.nombre).includes(nq) || norm(m.spec).includes(nq) || norm('colchon sommier colchones sommiers').includes(nq));
+  let prods = productos.filter(p => norm(p.nombre).includes(nq) || norm(p.desc).includes(nq));
+  if (enCat) {
+    prods = prods.filter(p => p.categoria === filtroActual);
+    if (filtroActual !== 'descanso') cols = [];
+  }
+  prods = aplicarOrden(prods);
+  cols = aplicarOrdenColchones(cols);
+  const total = cols.length + prods.length;
   let html = `<button class="volver-btn" onclick="filtrar('inicio')">← Todas las categorías</button>`;
-  html += `<h2 class="categoria-titulo">Resultados para “${q}”</h2>`;
-  if (!cols.length && !prods.length) {
-    html += `<p style="color:var(--gris);padding:0 4px 40px">No encontramos productos con “${q}”. Probá con otra palabra (ej: placard, colchón, mesa).</p>`;
+  html += `<h2 class="categoria-titulo">Resultados para “${q}” (${total})</h2>`;
+  html += barraOrdenHTML(catObj ? catObj.label.replace(/^\S+\s/,'') : null);
+  if (!total) {
+    html += `<p style="color:var(--gris);padding:0 4px 40px">No encontramos productos con “${q}”${catObj ? ` en <strong>${catObj.label.replace(/^\S+\s/,'')}</strong>. Probá <button class="volver-btn" style="padding:0" onclick="buscarEnTodo()">buscar en todo el catálogo</button>` : '. Probá con otra palabra (ej: placard, colchón, mesa)'}.</p>`;
   } else {
     html += '<div class="grid">';
     cols.forEach(m => { html += renderColchonCard(m); });
@@ -1103,6 +1233,11 @@ function renderBusqueda(q) {
     html += '</div>';
   }
   document.getElementById('catalogo').innerHTML = html;
+}
+function buscarEnTodo() {
+  filtroActual = 'inicio';
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  render();
 }
 function norm(s) { return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
 
@@ -1214,15 +1349,15 @@ function filtrar(key) {
 function buscar(q) {
   busquedaActiva = q.trim();
   document.getElementById('buscadorClear').style.display = busquedaActiva ? 'block' : 'none';
-  if (!busquedaActiva) { render(); return; }
-  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  renderSugerencias(busquedaActiva);
   render();
 }
 function limpiarBusqueda() {
   busquedaActiva = '';
   document.getElementById('buscador').value = '';
   document.getElementById('buscadorClear').style.display = 'none';
-  filtrar('inicio');
+  cerrarSugerencias();
+  render();
 }
 
 function setModo(modo) {
