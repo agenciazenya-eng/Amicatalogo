@@ -649,7 +649,8 @@ const productos = [
   { id:8, categoria:'sillas', nombre:'Silla Eames (por unidad)', precio:30000, emoji:'🪑', desc:'Silla Eames madera haya. Disponible en blanca, negra, rosa, amarillo, azul y verde aqua. Precio por unidad.' },
   { id:306, categoria:'sillas', nombre:'Sillas Bari Eco x6 (Promo)', precio:199000, emoji:'🪑', desc:'Juego de 6 sillas. Patas de caño reforzado con travesaños · Tapizado en tela estampada. Precio por las 6 sillas.' },
   { id:307, categoria:'sillas', nombre:'Sillas Vogue x6', precio:289000, emoji:'🪑', desc:'Juego de 6 sillas. Estructura de caño cuadrado negro · Respaldo alto · Tapizado en tela estampada. Precio por las 6 sillas.' },
-  { id:325, categoria:'sillas', nombre:'Silla Class', precio:null, emoji:'🪑', desc:'Silla Class. Respaldo alto tapizado · Estructura de caño negro · Tela estampada. Consultá precio y colores disponibles.' },
+  { id:325, categoria:'sillas', nombre:'Sillas Class x6', precio:279000, emoji:'🪑', desc:'Juego de 6 sillas Class. Respaldo alto tapizado · Estructura de caño negro. Precio por las 6 sillas. Consultá telas y colores disponibles.' },
+  { id:390, categoria:'sillas', nombre:'Silla Vestida Madera', precio:null, emoji:'🪑', desc:'Silla tapizada con patas de madera y detalle de tachas. Consultá precio, telas y colores disponibles.' },
   { id:305, categoria:'sillas', nombre:'Butaca Conrad', precio:139000, emoji:'🛋️', desc:'Butaca individual estilo tub, tapizado en tela. Precio por unidad. Consultá colores disponibles.' },
   { id:323, categoria:'sillas', nombre:'Sillas Apilables Tapizadas x6', precio:169000, emoji:'🪑', desc:'Juego de 6 sillas apilables. Respaldo y asiento tapizados · Estructura de caño negro reforzado · Tela estampada. Disponible en varios colores (negro, rojo y más). Precio por las 6 sillas.' },
   { id:324, categoria:'sillas', nombre:'Sillas Apilables Económicas x6', precio:149000, emoji:'🪑', desc:'Juego de 6 sillas apilables. Respaldo de caño negro · Asiento tapizado en tela estampada. Precio por las 6 sillas.' },
@@ -676,14 +677,14 @@ const productos = [
   { id:41, categoria:'racks-tv', nombre:'Modular TV 2.30m', precio:367000, emoji:'📺', desc:'Modular TV 2300 · 1,88m alto × 2,30m ancho × 0,42m prof. Gran capacidad de guardado. Hasta 75".' },
   { id:42, categoria:'racks-tv', nombre:'Modular Rack 553 (4 Puertas)', precio:210000, emoji:'📺', desc:'Rack modular 1,51m × 1,82m × 0,36m. Cajón con correderas metálicas + 4 puertas. Hasta 43".' },
   { id:43, categoria:'cocina', nombre:'Mueble Microondas', precio:89000, emoji:'🍳', desc:'Gabinete microondas 0,60m × 1,21m × 0,44m. 2 puertas y 2 estantes. Espacio para microondas.' },
-  { id:372, categoria:'cocina', nombre:'Alacena Línea Bahia', precio:79000, emoji:'🍳', desc:'Alacena de cocina. Medidas: 1,20m $79.000 · 1,40m $88.000 · 1,60m $97.000. Colores: blanco, jacaranda, wengue, abedul.' },
-  { id:373, categoria:'cocina', nombre:'Bajo Mesada Línea Bahia', precio:127000, emoji:'🍳', desc:'Bajo mesada de cocina. Medidas: 1,20m $127.000 · 1,40m $146.000 · 1,60m $165.000. Colores: blanco, jacaranda, wengue, abedul.' },
+  { id:372, categoria:'cocina', nombre:'Alacena Línea Bahia', precio:79000, emoji:'🍳', desc:'Alacena de cocina. Elegí la medida. Colores: blanco, jacaranda, wengue, abedul.', variantes:[{label:'1,20m',precio:79000},{label:'1,40m',precio:88000},{label:'1,60m',precio:97000}] },
+  { id:373, categoria:'cocina', nombre:'Bajo Mesada Línea Bahia', precio:127000, emoji:'🍳', desc:'Bajo mesada de cocina. Elegí la medida. Colores: blanco, jacaranda, wengue, abedul.', variantes:[{label:'1,20m',precio:127000},{label:'1,40m',precio:146000},{label:'1,60m',precio:165000}] },
   { id:374, categoria:'cocina', nombre:'Columna Turin 1 Puerta', precio:101000, emoji:'🍳', desc:'Columna de cocina de 1 puerta. Alto 1,80m. Melamina 15, forrada por dentro, 5 estantes. Línea Turin. Blanco, Hickory, Nebraska.' },
   { id:375, categoria:'cocina', nombre:'Despensero Turin 2 Puertas', precio:124000, emoji:'🍳', desc:'Despensero de 2 puertas. Alto 1,81m. Melamina 15, forrado por dentro, 5 estantes. Línea Turin. Blanco, Hickory, Nebraska.' },
   { id:376, categoria:'cocina', nombre:'Despensero Colgante', precio:46000, emoji:'🍳', desc:'Despensero colgante. 1,53m × 0,38m. Melamina 15, forrado por dentro, 4 estantes. Colores: tabaco, roble antiguo.' },
-  { id:377, categoria:'cocina', nombre:'Bacha Acero Central', precio:93000, emoji:'🍳', desc:'Bacha de acero inoxidable con mesada. Medidas: 1,20m $93.000 · 1,40m $102.000 · 1,60m $147.000.' },
+  { id:377, categoria:'cocina', nombre:'Bacha Acero Central', precio:93000, emoji:'🍳', desc:'Bacha de acero inoxidable con mesada. Elegí la medida.', variantes:[{label:'1,20m',precio:93000},{label:'1,40m',precio:102000},{label:'1,60m',precio:147000}] },
   { id:378, categoria:'cocina', nombre:'Bacha Acero Nacional 1.20', precio:113000, emoji:'🍳', desc:'Bacha de acero inoxidable nacional con mesada. Medida 1,20m.' },
-  { id:379, categoria:'cocina', nombre:'Bacha Marmolina Negra', precio:115000, emoji:'🍳', desc:'Bacha con mesada de marmolina negra. Medidas: 1,20m $115.000 · 1,40m $129.000 · 1,60m $153.000.' },
+  { id:379, categoria:'cocina', nombre:'Bacha Marmolina Negra', precio:115000, emoji:'🍳', desc:'Bacha con mesada de marmolina negra. Elegí la medida.', variantes:[{label:'1,20m',precio:115000},{label:'1,40m',precio:129000},{label:'1,60m',precio:153000}] },
   { id:380, categoria:'cocina', nombre:'Mesada Acero Doble Bacha 1.60', precio:193000, emoji:'🍳', desc:'Mesada de acero inoxidable con doble bacha. Medida 1,60m.' },
 
   // LIVING Y SOFÁS
@@ -704,7 +705,7 @@ const productos = [
   { id:74, categoria:'placares-abrir', nombre:'Placard Fortaleza 4 Puertas', precio:231000, emoji:'🚪', desc:'1,23m × 1,80m × 47cm. 4 puertas + 2 cajones · Barral aluminio. Golden oregon, grafito teca.' },
   { id:66, categoria:'placares-abrir', nombre:'Placard Platinum 6 Puertas', precio:243000, emoji:'🚪', desc:'1,81m × 1,85m × 0,55m. 6P + 2 cajones + barral + 5 estantes · Melamina 15. Fresno blanco.' },
   { id:318, categoria:'placares-abrir', nombre:'Placard Fortaleza 6 Puertas', precio:null, emoji:'🚪', desc:'Placard Fortaleza de 6 puertas y cajones. Amplia capacidad de guardado. Golden oregon, grafito teca.' },
-  { id:64, categoria:'placares-abrir', nombre:'Placard Benevento (2 a 6 puertas)', precio:94000, emoji:'🚪', desc:'Barral de aluminio. Colores: blanco alpino, moro, wengue. 2P $94.000 · 3P $140.000 · 4P $163.000 · 6P $221.000.' },
+  { id:64, categoria:'placares-abrir', nombre:'Placard Benevento', precio:94000, emoji:'🚪', desc:'Placard con barral de aluminio. Elegí la cantidad de puertas. Colores: blanco alpino, moro, wengue.', variantes:[{label:'2 puertas',precio:94000},{label:'3 puertas',precio:140000},{label:'4 puertas',precio:163000},{label:'6 puertas',precio:221000}] },
   { id:18, categoria:'placares-abrir', nombre:'Combo Placard + Cómoda Infantil Fortaleza', precio:320000, emoji:'🎀', desc:'SET INFANTIL: Placard blanco con puertas rosas. 3 estantes + barra de colgado. Cómoda con 4 cajones amplios. Puertas batientes suaves.' },
 
   // CÓMODAS Y CHIFONIER
@@ -777,13 +778,13 @@ const productos = [
 
   // LIVING — nuevos
   { id:59, categoria:'living', nombre:'Sofá Paris 1 Cuerpo', precio:123000, emoji:'🛋️', desc:'81×80×90cm. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
-  { id:60, categoria:'living', nombre:'Living Paradise', precio:335000, emoji:'🛋️', desc:'Tela Sunny antimancha. 1 cuerpo (0,90m) $231.000 · 2 cuerpos (1,50m) $335.000 · 3 cuerpos (2,10m) $468.000. Colores: negro, gris, arena, bronze.' },
-  { id:61, categoria:'living', nombre:'Living Lujo', precio:434000, emoji:'🛋️', desc:'Tela Touch antimancha. 1 cuerpo (1,20m) $434.000 · 2 cuerpos (1,80m) $644.000 · 3 cuerpos (2,40m) $857.000. Colores: gris, azul, arena, bronze, verde oscuro.' },
+  { id:60, categoria:'living', nombre:'Living Paradise', precio:231000, emoji:'🛋️', desc:'Living / sofá. Tela Sunny antimancha. Elegí el tamaño. Colores: negro, gris, arena, bronze.', variantes:[{label:'1 cuerpo',precio:231000},{label:'2 cuerpos',precio:335000},{label:'3 cuerpos',precio:468000}] },
+  { id:61, categoria:'living', nombre:'Living Lujo', precio:434000, emoji:'🛋️', desc:'Living / sofá. Tela Touch antimancha. Elegí el tamaño. Colores: gris, azul, arena, bronze, verde oscuro.', variantes:[{label:'1 cuerpo',precio:434000},{label:'2 cuerpos',precio:644000},{label:'3 cuerpos',precio:857000}] },
   { id:300, categoria:'living', nombre:'Esquinero Cami', precio:null, emoji:'🛋️', desc:'Sillón esquinero con chaise longue. Consultá medidas, telas y colores disponibles.' },
   { id:302, categoria:'living', nombre:'Esquinero Solana', precio:null, emoji:'🛋️', desc:'Sillón esquinero Solana. Consultá medidas, telas y colores disponibles.' },
   { id:303, categoria:'living', nombre:'Sillón Nórdico Litoral', precio:null, emoji:'🛋️', desc:'Sillón estilo nórdico. Consultá medidas, telas y colores disponibles.' },
   { id:304, categoria:'living', nombre:'Sofá Cama 1½ Plaza', precio:239000, emoji:'🛋️', desc:'Sofá cama 1,40×1,90m. Apertura frontal. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
-  { id:63, categoria:'descanso', nombre:'Respaldos (todas las medidas)', precio:35000, emoji:'🛏️', desc:'Tela Alpha antidesgarro. Colores: gris, azul, habano, beige. 0,80m $35.000 · 1,00m $41.000 · 1,40m $55.000 · 1,60m $63.000 · 1,80m $68.000 · 2,00m $75.000.' },
+  { id:63, categoria:'descanso', nombre:'Respaldos', precio:35000, emoji:'🛏️', desc:'Respaldo de cama. Tela Alpha antidesgarro. Elegí la medida. Colores: gris, azul, habano, beige.', variantes:[{label:'0,80m',precio:35000},{label:'1,00m',precio:41000},{label:'1,40m',precio:55000},{label:'1,60m',precio:63000},{label:'1,80m',precio:68000},{label:'2,00m',precio:75000}] },
 
   // PLACARES — nuevos
 
@@ -805,12 +806,12 @@ const productos = [
   // SOMMIER — nuevas líneas
 
   // COCINA — nuevas
-  { id:95, categoria:'cocina', nombre:'Combo Cocina Línea Bahia', precio:321000, emoji:'🍳', desc:'Correderas plásticas. 1,20m c/marmolina $321.000 · 1,40m $362.000 · 1,60m $414.000. Colores: blanco, jacaranda, wengue, abedul.' },
-  { id:96, categoria:'cocina', nombre:'Combo Cocina Línea Premium', precio:377000, emoji:'🍳', desc:'Visagra semiautomática · Perfil manija aluminio · Forrado por dentro. 1,20m c/marmolina $377.000 · 1,40m $413.000 · 1,60m $524.000.' },
+  { id:95, categoria:'cocina', nombre:'Combo Cocina Línea Bahia', precio:321000, emoji:'🍳', desc:'Combo alacena + bajo mesada con marmolina. Correderas plásticas. Elegí la medida. Colores: blanco, jacaranda, wengue, abedul.', variantes:[{label:'1,20m',precio:321000},{label:'1,40m',precio:362000},{label:'1,60m',precio:414000}] },
+  { id:96, categoria:'cocina', nombre:'Combo Cocina Línea Premium', precio:377000, emoji:'🍳', desc:'Combo alacena + bajo mesada con marmolina. Visagra semiautomática · perfil manija aluminio · forrado por dentro. Elegí la medida.', variantes:[{label:'1,20m',precio:377000},{label:'1,40m',precio:413000},{label:'1,60m',precio:524000}] },
   { id:97, categoria:'cocina', nombre:'Kit Cocina Acapulco (Máximo)', precio:224000, emoji:'🍳', desc:'Línea Acapulco. 3 puertas (1,71m alto × 91,5cm) $224.000 · 5 puertas (1,96m × 1,40m) $291.000. Grafito teca o blanco mate.' },
   { id:98, categoria:'cocina', nombre:'Escobero', precio:110000, emoji:'🍳', desc:'61cm × 1,83m × 31cm. 4 estantes. Espacio para escoba, baldes, etc. Color blanco o wengue.' },
   { id:99, categoria:'cocina', nombre:'Multiuso (Bahamas / Gramado)', precio:66000, emoji:'🍳', desc:'Multiuso Gramado (75cm) $66.000 · Multiuso Bahamas (1,70m) $98.000. Para cocinas y distintos ambientes.' },
-  { id:100, categoria:'cocina', nombre:'Kit Duplo / Kit Triplo con Vidrio', precio:145000, emoji:'🍳', desc:'Kit Duplo (1,86×0,70m) $145.000 · Kit Triplo con vidrio (1,86×1,05m, 3 estantes + 3 cajones) $235.000.' },
+  { id:100, categoria:'cocina', nombre:'Kit Duplo / Kit Triplo con Vidrio', precio:145000, emoji:'🍳', desc:'Kit de cocina. Duplo (1,86×0,70m): 4 puertas + 2 estantes. Triplo con vidrio (1,86×1,05m): 4 puertas + 3 estantes + 3 cajones.', variantes:[{label:'Kit Duplo',precio:145000},{label:'Kit Triplo c/vidrio',precio:235000}] },
 
   // ESCRITORIOS — nuevos
   { id:101, categoria:'cocina', nombre:'Desayunador', precio:106000, emoji:'📖', desc:'1,32m × 1,03m × 0,45m. 3 estantes laterales (1 inclinable). Platinum.' },
@@ -877,7 +878,7 @@ const imgMap = {
   31:'imgs/p24.jpg',
   32:'imgs/p30.jpg',
   33:'imgs/p31.jpg',
-  34:'imgs/p32.jpg',
+  34:['imgs/p32.jpg','imgs/alacena-turin.jpg'],
   35:['imgs/esc-platinum-2caj-llave.jpg','imgs/escritorio-1m.jpg'],
   36:'imgs/biblioteca-platinum.jpg',
   37:'imgs/escritorio-notebook.jpg',
@@ -888,25 +889,27 @@ const imgMap = {
   59:'imgs/n59.jpg', 60:'imgs/n60.jpg', 61:'imgs/n61.jpg', 62:'imgs/n62.jpg',
   63:'imgs/n63.jpg', 64:'imgs/n64.jpg', 65:'imgs/placard-base-4p.jpg', 66:'imgs/placard-base-6p.jpg',
   67:['imgs/placard-633-1.jpg','imgs/placard-633-2.jpg'], 68:'imgs/n68.jpg', 69:'imgs/n69.jpg', 70:'imgs/n70.jpg',
-  71:'imgs/n71.jpg', 72:['imgs/montana-sin-espejo.jpg','imgs/montana-con-espejo.jpg','imgs/montana-verde.jpg'], 73:'imgs/n73.jpg', 74:'imgs/placard-fort-4p.jpg',
+  71:'imgs/n71.jpg', 72:['imgs/montana-sin-espejo.jpg','imgs/montana-con-espejo.jpg','imgs/montana-verde.jpg','imgs/montana-color-2.jpg','imgs/montana-color-3.jpg'], 73:'imgs/n73.jpg', 74:'imgs/placard-fort-4p.jpg',
   75:'imgs/n75.jpg', 76:'imgs/n76.jpg', 77:'imgs/n77.jpg', 78:'imgs/n78.jpg',
   79:'imgs/n79.jpg', 80:'imgs/n80.jpg', 81:'imgs/comoda-fortaleza.jpg', 82:'imgs/n82.jpg',
   83:'imgs/n83.jpg', 84:'imgs/respaldo-platinum.jpg', 86:'imgs/n86.jpg', 87:'imgs/n87.jpg',
   88:'imgs/n88.jpg', 90:'imgs/n90.jpg', 91:'imgs/n91.jpg', 92:'imgs/n92.jpg',
   93:'imgs/n93.jpg', 94:'imgs/n94.jpg', 95:'imgs/n95.jpg', 96:'imgs/n96.jpg',
-  97:'imgs/n97.jpg', 98:'imgs/escobero-platinum.jpg', 99:'imgs/n99.jpg', 100:['imgs/kit-duplo-1.jpg','imgs/kit-duplo-2.jpg','imgs/kit-duplo-3.jpg'],
+  97:'imgs/n97.jpg', 98:'imgs/escobero-platinum.jpg', 99:'imgs/n99.jpg', 100:['imgs/kit-duplo.jpg','imgs/kit-triplo.jpg','imgs/kit-duplo-1.jpg','imgs/kit-duplo-2.jpg','imgs/kit-duplo-3.jpg'],
   101:'imgs/n101.jpg', 102:'imgs/n102.jpg', 103:'imgs/n103.jpg', 104:'imgs/n104.jpg',
   105:'imgs/mesaluz-platinum.jpg',
   329:'imgs/gabinete-funcional.jpg',
   330:'imgs/bahiut-platinum.jpg',
   331:'imgs/maquillador.jpg',
+  43:'imgs/gabinete-microondas.jpg',
+  390:'imgs/silla-vestida-madera.jpg',
   332:'imgs/maquillador-hollywood.jpg',
   370:'imgs/biblio-5est-richezze.jpg',
   371:'imgs/biblio-mesina.jpg',
   372:['imgs/alacena-bahia-2.jpg','imgs/alacena-bahia-1.jpg'],
   373:['imgs/bajo-mesada-2.jpg','imgs/bajo-mesada-1.jpg'],
   374:'imgs/columna-turin.jpg',
-  375:'imgs/despensero-turin.jpg',
+  375:['imgs/despensero-turin.jpg','imgs/despensero-turin-2.jpg'],
   376:'imgs/despensero-colgante.jpg',
   377:'imgs/bacha-acero-central.jpg',
   378:'imgs/bacha-acero-nacional.jpg',
@@ -949,7 +952,7 @@ const imgMap = {
   322:'imgs/comedor-madera-gris.jpg',
   306:'imgs/silla-bari-1.jpg',
   307:'imgs/silla-vogue.jpg',
-  325:'imgs/silla-class.jpg',
+  325:['imgs/silla-class.jpg','imgs/silla-class-2.jpg'],
   300:'imgs/sill-cami.jpg',
   302:'imgs/sill-solana.jpg',
   303:'imgs/sill-nordico.jpg',
@@ -959,7 +962,7 @@ const imgMap = {
   312:['imgs/rack-corredizas-1.jpg','imgs/rack-corredizas-2.jpg'],
    313:'imgs/rack-mundial-new.jpg',
    314:'imgs/home-scaletta-new.jpg',
-  315:['imgs/kit-compacto-turin-1.jpg','imgs/kit-compacto-turin-2.jpg','imgs/kit-compacto-turin-3.jpg'],
+  315:['imgs/kit-compacto-turin-1.jpg','imgs/kit-compacto-turin-2.jpg','imgs/kit-compacto-turin-3.jpg','imgs/kit-compacto-turin-4.jpg'],
   316:'imgs/comoda-tana-pluspack.jpg',
   317:'imgs/mesaluz-fortaleza.jpg',
   318:'imgs/placard-fort-6p.jpg',
@@ -1036,6 +1039,7 @@ function renderPrecioValor(contado, precioTachado) {
 function renderPrecio(p) { return renderPrecioValor(p.precio, p.precioTachado); }
 
 function cardHTML(p) {
+  if (p.variantes && p.variantes.length) return cardVarianteHTML(p);
   const key = 'p' + p.id, en = enCarrito(key);
   return `
     <div class="card">
@@ -1050,6 +1054,54 @@ function cardHTML(p) {
         <a class="card-wa" href="${waLink(p)}" target="_blank">${WA_ICON} Consultar</a>
       </div>
     </div>`;
+}
+
+// ----- PRODUCTOS con VARIANTES (medidas) -----
+const selVar = {};
+function getSelVar(id) { return selVar[id] || (selVar[id] = 0); }
+function varSel(p) { return p.variantes[getSelVar(p.id)]; }
+function keyVar(p) { return `v-${p.id}-${getSelVar(p.id)}`; }
+function waVariante(p) {
+  const v = varSel(p);
+  const msg = encodeURIComponent(`Hola! Quiero consultar sobre: *${p.nombre} ${v.label}* (${formatPeso(v.precio)})`);
+  return `https://wa.me/${WA}?text=${msg}`;
+}
+function cardVarianteHTML(p) {
+  const idx = getSelVar(p.id);
+  const en = enCarrito(keyVar(p));
+  return `
+    <div class="card" data-variante="${p.id}">
+      ${galleryHTML(imgList(p.id), p.nombre, p.emoji)}
+      <div class="card-body">
+        <div class="card-nombre">${p.nombre}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="medidas">
+          ${p.variantes.map((v,i)=>`<button class="${idx===i?'active':''}" onclick="setVariante(${p.id},${i})">${v.label}</button>`).join('')}
+        </div>
+        <div class="card-precios" data-precio-var>${renderPrecioValor(p.variantes[idx].precio)}</div>
+      </div>
+      <div class="card-actions">
+        <button class="card-agregar${en?' en-carrito':''}" data-agregar-var onclick="agregarVariante(${p.id})">${en?'✓ Agregado':'+ Agregar'}</button>
+        <a class="card-wa" data-wa-var href="${waVariante(p)}" target="_blank">${WA_ICON} Consultar</a>
+      </div>
+    </div>`;
+}
+function setVariante(id, idx) { selVar[id] = idx; refreshVariante(id); }
+function refreshVariante(id) {
+  const p = productos.find(x => x.id === id), idx = getSelVar(id);
+  const card = document.querySelector(`[data-variante="${id}"]`);
+  if (!card) return;
+  card.querySelectorAll('.medidas button').forEach((b,i)=>b.classList.toggle('active', i===idx));
+  card.querySelector('[data-precio-var]').innerHTML = renderPrecioValor(p.variantes[idx].precio);
+  card.querySelector('[data-wa-var]').href = waVariante(p);
+  const en = enCarrito(keyVar(p));
+  const ag = card.querySelector('[data-agregar-var]');
+  ag.classList.toggle('en-carrito', en);
+  ag.innerHTML = en ? '✓ Agregado' : '+ Agregar';
+}
+function agregarVariante(id) {
+  const p = productos.find(x => x.id === id), v = varSel(p);
+  toggleKey(keyVar(p), `${p.nombre} ${v.label}`, v.precio, imgList(id)[0] || null);
 }
 
 // ----- COLCHONES / SOMMIERS con selector -----
