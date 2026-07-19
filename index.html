@@ -723,9 +723,10 @@ const productos = [
   { id:250, categoria:'descanso', nombre:"Combo Infantil (colchón + base)", precio:99000, emoji:'💤', desc:"Combo infantil 1 plaza: colchón + base/sommier. Respaldo tapizado aparte (+$40.000). Ideal para dormitorio de nenes. Consultá colores disponibles." },
 
   // COCINA
-  { id:32, categoria:'cocina', nombre:'Combo Cocina Línea Turin 1.20m', precio:322000, emoji:'🍳', desc:'Alacena 1,20m + bajo mesada 1,20m + marmolina. Melamina blanca por dentro, guías metálicas. Colores: blanco, Nebraska, Hickory blanco.' },
+  { id:32, categoria:'cocina', nombre:'Combo Cocina Línea Turin', precio:301000, emoji:'🍳', desc:'Combo alacena + bajo mesada + mesada. El de 1,60m incluye módulos de 0,40m. Melamina blanca por dentro, guías metálicas. Elegí la medida y el tipo de mesada. Colores: blanco, Nebraska, Hickory blanco.', variantes:[{label:'1,20m c/acero',precio:301000},{label:'1,20m c/marmolina',precio:322000},{label:'1,40m c/acero',precio:333000},{label:'1,40m c/marmolina',precio:359000},{label:'1,60m c/acero',precio:453000},{label:'1,60m c/marmolina',precio:458000}] },
   { id:33, categoria:'cocina', nombre:'Despensero 2 Puertas', precio:98000, emoji:'🍳', desc:'Alto 1,83m · Ancho 0,61m · Prof 0,31m. Melamina 15. 5 estantes. Forrado por dentro. Color blanco.' },
-  { id:34, categoria:'cocina', nombre:'Alacena + Bajo Mesada Turin 1.40m', precio:229000, emoji:'🍳', desc:'Alacena 1,40m ($66.000) + bajo mesada 1,40m ($99.000). Melamina. Con o sin marmolina. Colores a elección.' },
+  { id:34, categoria:'cocina', nombre:'Alacena Línea Turin', precio:35000, emoji:'🍳', desc:'Alacena de cocina. Alto 0,50m · Prof 0,31m. Melamina blanca por dentro, guías metálicas. Elegí la medida. Colores: blanco, Nebraska, Hickory blanco.', variantes:[{label:'0,40m',precio:35000},{label:'1,20m',precio:82000},{label:'1,40m',precio:92000}] },
+  { id:391, categoria:'cocina', nombre:'Bajo Mesada Línea Turin', precio:64000, emoji:'🍳', desc:'Bajo mesada de cocina. Alto 0,85m · Prof 0,53m. Melamina blanca por dentro, guías metálicas. Elegí la medida (el de 0,40m es de 1 puerta). Colores: blanco, Nebraska, Hickory blanco.', variantes:[{label:'0,40m 1 puerta',precio:64000},{label:'1,20m',precio:124000},{label:'1,40m',precio:138000}] },
 
   // ESCRITORIOS
   { id:351, categoria:'escritorios', nombre:'Escritorio 0.90 sin Cajón (Richezze)', precio:60000, emoji:'📖', desc:'Escritorio compacto de 0,90m, sin cajones. Línea Richezze. Consultá colores disponibles.' },
@@ -875,9 +876,9 @@ const imgMap = {
   29:'imgs/p28.jpg',
   30:'imgs/p29.jpg',
   31:'imgs/p24.jpg',
-  32:'imgs/p30.jpg',
+  32:['imgs/p30.jpg','imgs/p32.jpg'],
   33:'imgs/p31.jpg',
-  34:['imgs/p32.jpg','imgs/alacena-turin.jpg'],
+  34:'imgs/alacena-turin.jpg',
   35:['imgs/esc-platinum-2caj-llave.jpg','imgs/escritorio-1m.jpg'],
   36:'imgs/biblioteca-platinum.jpg',
   37:'imgs/escritorio-notebook.jpg',
