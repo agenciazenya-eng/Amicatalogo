@@ -995,20 +995,20 @@ const imgMap = {
   };
 
 const categorias = [
-  { key:'combos-mesas', label:'🪑 Combos Mesas y Sillas' },
-  { key:'sillas', label:'🪑 Sillas' },
-  { key:'mesas', label:'🪵 Mesas' },
-  { key:'racks-tv', label:'📺 Racks y Muebles de TV' },
-  { key:'living', label:'🛋️ Living, Sofás y Sillones' },
-  { key:'placares-corredizos', label:'🚪 Placares Corredizos' },
-  { key:'placares-abrir', label:'🚪 Placares de Abrir' },
-  { key:'comodas', label:'🗄️ Cómodas y Chifonier' },
-  { key:'cuchetas', label:'🛏️ Cuchetas' },
-  { key:'descanso', label:'🛏️ Colchones y Sommiers' },
-  { key:'cocina', label:'🍳 Muebles de Cocina' },
-  { key:'escritorios', label:'📖 Escritorios y Maquilladores' },
-  { key:'bibliotecas', label:'📚 Bibliotecas y Módulos' },
-  { key:'mesas-luz', label:'🌙 Mesas de Luz' },
+  { key:'combos-mesas', label:'Combos Mesas y Sillas' },
+  { key:'sillas', label:'Sillas' },
+  { key:'mesas', label:'Mesas' },
+  { key:'racks-tv', label:'Racks y Muebles de TV' },
+  { key:'living', label:'Living, Sofás y Sillones' },
+  { key:'placares-corredizos', label:'Placares Corredizos' },
+  { key:'placares-abrir', label:'Placares de Abrir' },
+  { key:'comodas', label:'Cómodas y Chifonier' },
+  { key:'cuchetas', label:'Cuchetas' },
+  { key:'descanso', label:'Colchones y Sommiers' },
+  { key:'cocina', label:'Muebles de Cocina' },
+  { key:'escritorios', label:'Escritorios y Maquilladores' },
+  { key:'bibliotecas', label:'Bibliotecas y Módulos' },
+  { key:'mesas-luz', label:'Mesas de Luz' },
 ];
 
 function formatPeso(n) {
@@ -1254,7 +1254,7 @@ function renderSugerencias(q) {
   productos.forEach(p => {
     if (norm(p.nombre).includes(nq)) {
       const c = categorias.find(c => c.key === p.categoria);
-      sugActuales.push({ label: p.nombre, cat: c ? c.label.replace(/^\S+\s/,'') : '', img: imgList(p.id)[0], precio: p.precio });
+      sugActuales.push({ label: p.nombre, cat: c ? c.label : '', img: imgList(p.id)[0], precio: p.precio });
     }
   });
   sugActuales = sugActuales.slice(0, 6);
@@ -1321,9 +1321,9 @@ function renderBusqueda(q) {
   const total = cols.length + prods.length;
   let html = `<button class="volver-btn" onclick="filtrar('inicio')">← Todas las categorías</button>`;
   html += `<h2 class="categoria-titulo">Resultados para “${q}” (${total})</h2>`;
-  html += barraOrdenHTML(catObj ? catObj.label.replace(/^\S+\s/,'') : null);
+  html += barraOrdenHTML(catObj ? catObj.label : null);
   if (!total) {
-    html += `<p style="color:var(--gris);padding:0 4px 40px">No encontramos productos con “${q}”${catObj ? ` en <strong>${catObj.label.replace(/^\S+\s/,'')}</strong>. Probá <button class="volver-btn" style="padding:0" onclick="buscarEnTodo()">buscar en todo el catálogo</button>` : '. Probá con otra palabra (ej: placard, colchón, mesa)'}.</p>`;
+    html += `<p style="color:var(--gris);padding:0 4px 40px">No encontramos productos con “${q}”${catObj ? ` en <strong>${catObj.label}</strong>. Probá <button class="volver-btn" style="padding:0" onclick="buscarEnTodo()">buscar en todo el catálogo</button>` : '. Probá con otra palabra (ej: placard, colchón, mesa)'}.</p>`;
   } else {
     html += '<div class="grid">';
     cols.forEach(m => { html += renderColchonCard(m); });
