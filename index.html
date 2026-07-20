@@ -641,16 +641,16 @@ const productos = [
   // COMBOS MESAS Y SILLAS
 
   // SILLAS
-  { id:6, categoria:'sillas', nombre:'Silla Roma / Master (por unidad)', precio:30000, emoji:'🪑', desc:'Silla apilable Roma o Master. Polipropileno + fibra de vidrio. Soporta 150kg. Interior y exterior. Blancas, negras o gris. Precio por unidad.' },
-  { id:7, categoria:'sillas', nombre:'Silla Tulip (por unidad)', precio:37000, emoji:'🪑', desc:'Silla Tulip madera haya maciza. Polipropileno + fibra de vidrio. 82cm alto × 50cm ancho. Blancas, negras o gris. Precio por unidad.' },
-  { id:8, categoria:'sillas', nombre:'Silla Eames (por unidad)', precio:30000, emoji:'🪑', desc:'Silla Eames madera haya. Disponible en blanca, negra, rosa, amarillo, azul y verde aqua. Precio por unidad.' },
-  { id:306, categoria:'sillas', nombre:'Sillas Bari Eco x6 (Promo)', precio:199000, emoji:'🪑', desc:'Juego de 6 sillas. Patas de caño reforzado con travesaños · Tapizado en tela estampada. Precio por las 6 sillas.' },
-  { id:307, categoria:'sillas', nombre:'Sillas Vogue x6', precio:289000, emoji:'🪑', desc:'Juego de 6 sillas. Estructura de caño cuadrado negro · Respaldo alto · Tapizado en tela estampada. Precio por las 6 sillas.' },
-  { id:325, categoria:'sillas', nombre:'Sillas Class x6', precio:279000, emoji:'🪑', desc:'Juego de 6 sillas Class. Respaldo alto tapizado · Estructura de caño negro. Precio por las 6 sillas. Consultá telas y colores disponibles.' },
+  { id:6, categoria:'sillas', nombre:'Silla Roma / Master', precio:30000, emoji:'🪑', desc:'Silla apilable Roma o Master. Polipropileno + fibra de vidrio. Soporta 150kg. Interior y exterior. Blancas, negras o gris. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:30000},{label:'x4',precio:120000},{label:'x6',precio:180000}] },
+  { id:7, categoria:'sillas', nombre:'Silla Tulip', precio:37000, emoji:'🪑', desc:'Silla Tulip madera haya maciza. Polipropileno + fibra de vidrio. 82cm alto × 50cm ancho. Blancas, negras o gris. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:37000},{label:'x4',precio:148000},{label:'x6',precio:222000}] },
+  { id:8, categoria:'sillas', nombre:'Silla Eames', precio:30000, emoji:'🪑', desc:'Silla Eames madera haya. Disponible en blanca, negra, rosa, amarillo, azul y verde aqua. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:30000},{label:'x4',precio:120000},{label:'x6',precio:180000}] },
+  { id:306, categoria:'sillas', nombre:'Silla Bari Eco (Promo)', precio:33000, emoji:'🪑', desc:'Patas de caño reforzado con travesaños · Tapizado en tela estampada. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:33000},{label:'x4',precio:132000},{label:'x6',precio:199000}] },
+  { id:307, categoria:'sillas', nombre:'Silla Vogue', precio:48000, emoji:'🪑', desc:'Estructura de caño cuadrado negro · Respaldo alto · Tapizado en tela estampada. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:48000},{label:'x4',precio:192000},{label:'x6',precio:289000}] },
+  { id:325, categoria:'sillas', nombre:'Silla Class', precio:47000, emoji:'🪑', desc:'Silla Class. Respaldo alto tapizado · Estructura de caño negro. Elegí la cantidad. Consultá telas y colores disponibles.', variantes:[{label:'Por unidad',precio:47000},{label:'x4',precio:188000},{label:'x6',precio:279000}] },
   { id:390, categoria:'sillas', nombre:'Silla Vestida Madera', precio:null, emoji:'🪑', desc:'Silla tapizada con patas de madera y detalle de tachas. Consultá precio, telas y colores disponibles.' },
   { id:305, categoria:'sillas', nombre:'Butaca Conrad', precio:139000, emoji:'🛋️', desc:'Butaca individual estilo tub, tapizado en tela. Precio por unidad. Consultá colores disponibles.' },
-  { id:323, categoria:'sillas', nombre:'Sillas Apilables Tapizadas x6', precio:169000, emoji:'🪑', desc:'Juego de 6 sillas apilables. Respaldo y asiento tapizados · Estructura de caño negro reforzado · Tela estampada. Disponible en varios colores (negro, rojo y más). Precio por las 6 sillas.' },
-  { id:324, categoria:'sillas', nombre:'Sillas Apilables Económicas x6', precio:149000, emoji:'🪑', desc:'Juego de 6 sillas apilables. Respaldo de caño negro · Asiento tapizado en tela estampada. Precio por las 6 sillas.' },
+  { id:323, categoria:'sillas', nombre:'Silla Apilable Tapizada', precio:28000, emoji:'🪑', desc:'Silla apilable con respaldo y asiento tapizados · Estructura de caño negro reforzado · Tela estampada. Varios colores (negro, rojo y más). Elegí la cantidad.', variantes:[{label:'Por unidad',precio:28000},{label:'x4',precio:112000},{label:'x6',precio:169000}] },
+  { id:324, categoria:'sillas', nombre:'Silla Apilable Económica', precio:25000, emoji:'🪑', desc:'Silla apilable con respaldo de caño negro · Asiento tapizado en tela estampada. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:25000},{label:'x4',precio:100000},{label:'x6',precio:149000}] },
 
   // MESAS
   { id:9, categoria:'mesas', nombre:'Mesa Cuadrada 1.20×1.20 + 6 Sillas de Madera', precio:null, emoji:'🪵', desc:'Combo comedor para 6 personas. Mesa 120×120cm en negro mate con base central. 6 sillas con respaldo tapizadas (color a elección). Consultá precio.' },
@@ -773,15 +773,15 @@ const productos = [
   { id:322, categoria:'combos-mesas', nombre:'Juego de Comedor Madera + 6 Sillas (Gris)', precio:null, emoji:'🍽️', desc:'Mesa con tapa de madera y patas de caño negro + 6 sillas tapizadas lisas color gris. Consultá medidas y precio.' },
 
   // SILLAS — nuevas
-  { id:54, categoria:'sillas', nombre:'Sillas Milan x6', precio:202000, emoji:'🪑', desc:'Pack 6 sillas Milan. Polipropileno + fibra de vidrio · Patas madera haya · 78cm alto × 44cm ancho · Apilables. Blancas o negras.' },
-  { id:55, categoria:'sillas', nombre:'Silla Windsor (por unidad)', precio:34000, emoji:'🪑', desc:'Silla Windsor. Polipropileno + fibra de vidrio · Patas madera haya · 80cm alto × 44cm ancho. Blancas o negras. Precio por unidad.' },
+  { id:54, categoria:'sillas', nombre:'Silla Milan', precio:34000, emoji:'🪑', desc:'Silla Milan apilable. Polipropileno + fibra de vidrio · Patas madera haya · 78cm alto × 44cm ancho. Blancas o negras. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:34000},{label:'x4',precio:136000},{label:'x6',precio:202000}] },
+  { id:55, categoria:'sillas', nombre:'Silla Windsor', precio:34000, emoji:'🪑', desc:'Silla Windsor. Polipropileno + fibra de vidrio · Patas madera haya · 80cm alto × 44cm ancho. Blancas o negras. Elegí la cantidad.', variantes:[{label:'Por unidad',precio:34000},{label:'x4',precio:136000},{label:'x6',precio:204000}] },
 
   // MESAS — nuevas
   { id:56, categoria:'mesas', nombre:'Mesa Pino L', precio:101000, emoji:'🪵', desc:'Tapa melamina · Patas pino · Estilo en L · Negro o blanco. 1,20m $101.000 · 1,40m $115.000.' },
   { id:57, categoria:'mesas', nombre:'Mesa Redonda 0.90', precio:98000, emoji:'🪵', desc:'Tapa melamina · Patas pino · Color negro o blanco. Diámetro 90cm. (Sin sillas).' },
   { id:58, categoria:'mesas', nombre:'Mesa Comedor 6 Personas', precio:99000, emoji:'🪵', desc:'1,51m × 0,775m × 0,91m. 100% melamina. Para 6 personas. Consultá colores disponibles.' },
-  { id:363, categoria:'mesas', nombre:'Mesa de Centro Calabria', precio:56000, emoji:'🪵', desc:'Mesa ratona / de centro con estante inferior. Patas de madera, estilo nórdico. Línea Calabria. Consultá colores disponibles.' },
-  { id:364, categoria:'mesas', nombre:'Mesa Recibidora Calabria', precio:109000, emoji:'🪵', desc:'Mesa recibidora / consola con cajón y estante inferior. Patas de madera, estilo nórdico. Línea Calabria. Consultá colores disponibles.' },
+  { id:363, categoria:'living', nombre:'Mesa de Centro Calabria', precio:56000, emoji:'🪵', desc:'Mesa ratona / de centro con estante inferior. Patas de madera, estilo nórdico. Línea Calabria. Consultá colores disponibles.' },
+  { id:364, categoria:'living', nombre:'Mesa Recibidora Calabria', precio:109000, emoji:'🪵', desc:'Mesa recibidora / consola con cajón y estante inferior. Patas de madera, estilo nórdico. Línea Calabria. Consultá colores disponibles.' },
 
   // LIVING — nuevos
   { id:59, categoria:'living', nombre:'Sofá Paris 1 Cuerpo', precio:123000, emoji:'🛋️', desc:'81×80×90cm. Tela Alpha antidesgarro. Colores: gris, azul, habano, rojo, beige, chocolate.' },
@@ -820,7 +820,7 @@ const productos = [
   { id:97, categoria:'cocina', nombre:'Kit Cocina Acapulco (Máximo)', precio:224000, emoji:'🍳', desc:'Línea Acapulco. 3 puertas (1,71m alto × 91,5cm) $224.000 · 5 puertas (1,96m × 1,40m) $291.000. Grafito teca o blanco mate.' },
   { id:98, categoria:'cocina', nombre:'Escobero', precio:110000, emoji:'🍳', desc:'61cm × 1,83m × 31cm. 4 estantes. Espacio para escoba, baldes, etc. Color blanco o wengue.' },
   { id:99, categoria:'cocina', nombre:'Multiuso (Bahamas / Gramado)', precio:66000, emoji:'🍳', desc:'Multiuso Gramado (75cm) $66.000 · Multiuso Bahamas (1,70m) $98.000. Para cocinas y distintos ambientes.' },
-  { id:100, categoria:'cocina', nombre:'Kit Duplo / Kit Triplo con Vidrio', precio:145000, emoji:'🍳', desc:'Kit de cocina. Duplo (1,86×0,70m): 4 puertas + 2 estantes. Triplo con vidrio (1,86×1,05m): 4 puertas + 3 estantes + 3 cajones.', variantes:[{label:'Kit Duplo',precio:145000},{label:'Kit Triplo c/vidrio',precio:235000}] },
+  { id:100, categoria:'cocina', nombre:'Kit Duplo / Kit Triplo con Vidrio', precio:145000, emoji:'🍳', desc:'Kit de cocina. Duplo (1,86×0,70m): 4 puertas + 2 estantes. Triplo con vidrio (1,86×1,05m): 4 puertas + 3 estantes + 3 cajones. Disponible en varios colores (deslizá las fotos).', variantes:[{label:'Kit Duplo',precio:145000},{label:'Kit Triplo c/vidrio',precio:235000}] },
 
   // ESCRITORIOS — nuevos
   { id:101, categoria:'cocina', nombre:'Desayunador', precio:106000, emoji:'📖', desc:'1,32m × 1,03m × 0,45m. 3 estantes laterales (1 inclinable). Platinum.' },
@@ -831,7 +831,7 @@ const productos = [
   { id:104, categoria:'mesas-luz', nombre:'Mesa de Luz Tana Piu', precio:63000, emoji:'🌙', desc:'62cm × 45cm × 39cm. 1 cajón + 1 puerta. Revestida. Blanco, Nevada, Fresno, Caffe, Moccha.' },
   { id:105, categoria:'mesas-luz', nombre:'Mesa de Luz Platinum', precio:59000, emoji:'🌙', desc:'65cm × 45cm × 45cm. 1 cajón + 1 estante + 1 puerta. Revestida. Blanco, savanna, gris andino.' },
   { id:312, categoria:'racks-tv', nombre:'Rack TV 2 Puertas Corredizas', precio:199000, emoji:'📺', desc:'Rack de TV con 2 puertas corredizas y espacios abiertos. Consultá medidas y colores.' },
-  { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:189000, emoji:'📺', desc:'Rack modular para TV. Disponible en varios colores. Consultá medidas.' },
+  { id:313, categoria:'racks-tv', nombre:'Rack Mundial', precio:199000, emoji:'📺', desc:'Rack modular para TV. Disponible en varios colores. Consultá medidas.' },
   { id:404, categoria:'racks-tv', nombre:'Rack TV Leyenda', precio:199000, emoji:'📺', desc:'Rack de TV con puertas y espacios abiertos. Consultá medidas y colores disponibles.' },
   { id:405, categoria:'racks-tv', nombre:'Centro de Entretenimiento 3 Estrellas', precio:299000, emoji:'📺', desc:'Centro de entretenimiento con panel para TV, estantes y cajones. Consultá medidas y colores disponibles.' },
   { id:406, categoria:'racks-tv', nombre:'Centro de Entretenimiento TV 75"', precio:359000, emoji:'📺', desc:'Centro de entretenimiento con panel para TV hasta 75", estantes laterales y cajones. Consultá medidas y colores.' },
@@ -853,7 +853,6 @@ const colchones = [
   { id:'realeza', nombre:"Realeza Exclusive", img:'imgs/n93.jpg', spec:"Resorte bicónico · 35cm · espuma viscoelástica de rápida recuperación · soporta 130kg/plaza", medidas:[{m:'0,80×1,90',plaza:'1 plaza',colchon:245000,sommier:289000}, {m:'1,00×1,90',plaza:'1½ plaza',colchon:336000,sommier:386000}, {m:'1,40×1,90',plaza:'2 plazas',colchon:440000,sommier:494000}, {m:'1,60×2,00',plaza:'Queen',colchon:574000,sommier:666000}, {m:'2,00×2,00',plaza:'King',colchon:686000,sommier:788000}] },
   { id:'euromax', nombre:"Premium Euro Max", img:'imgs/n91.jpg', spec:"Núcleo espuma HR alta densidad · 37cm · 40kg densidad · capitonée de lujo · doble euro espuma", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:630000,sommier:684000}, {m:'1,60×2,00',plaza:'Queen',colchon:721000,sommier:813000}, {m:'1,80×2,00',plaza:'Súper King',colchon:832000,sommier:929000}, {m:'2,00×2,00',plaza:'King',colchon:974000,sommier:1077000}] },
   { id:'riviere', nombre:"Riviere", img:'imgs/n92.jpg', spec:"Pillow viscoelástico 65kg · 34cm · tejido 3D antihumedad · soporta 130kg/plaza", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:617000,sommier:672000}, {m:'1,60×2,00',plaza:'Queen',colchon:742000,sommier:834000}, {m:'2,00×2,00',plaza:'King',colchon:950000,sommier:1052000}] },
-  { id:'briz', nombre:"Premium Briz", img:'imgs/n94.jpg', spec:"Alta gama · 35cm · soporta 140kg/plaza", medidas:[{m:'1,40×1,90',plaza:'2 plazas',colchon:629000,sommier:684000}, {m:'1,60×2,00',plaza:'Queen',colchon:717000,sommier:809000}, {m:'1,80×2,00',plaza:'Súper King',colchon:893000,sommier:991000}, {m:'2,00×2,00',plaza:'King',colchon:966000,sommier:1068000}] },
 ];
 
 // Mapeo id → imagen descargada del catálogo WhatsApp (solo fotos propias)
@@ -897,7 +896,7 @@ const imgMap = {
   59:'imgs/n59.jpg', 60:'imgs/n60.jpg', 61:'imgs/n61.jpg', 62:'imgs/n62.jpg',
   63:'imgs/n63.jpg', 64:'imgs/n64.jpg', 65:['imgs/placard-base-4p.jpg','imgs/placard-plat-4p-2.jpg'], 66:'imgs/placard-base-6p.jpg',
   67:['imgs/placard-633-1.jpg','imgs/placard-633-2.jpg'], 68:'imgs/n68.jpg', 69:'imgs/n69.jpg', 70:'imgs/n70.jpg',
-  71:'imgs/n71.jpg', 72:['imgs/montana-sin-espejo.jpg','imgs/montana-con-espejo.jpg','imgs/montana-verde.jpg','imgs/montana-color-2.jpg','imgs/montana-color-3.jpg'], 73:'imgs/n73.jpg', 74:['imgs/placard-fort-4p.jpg','imgs/placard-fort-4p-2.jpg'],
+  71:'imgs/n71.jpg', 72:['imgs/montana-sin-espejo.jpg','imgs/montana-con-espejo.jpg','imgs/montana-verde.jpg','imgs/montana-color-3.jpg','imgs/montana-color-2.jpg'], 73:'imgs/n73.jpg', 74:['imgs/placard-fort-4p.jpg','imgs/placard-fort-4p-2.jpg'],
   75:'imgs/n75.jpg', 76:'imgs/n76.jpg', 77:'imgs/n77.jpg', 78:'imgs/n78.jpg',
   79:'imgs/n79.jpg', 80:'imgs/n80.jpg', 81:'imgs/comoda-fortaleza.jpg', 82:'imgs/n82.jpg',
   83:'imgs/n83.jpg', 84:'imgs/respaldo-platinum.jpg', 86:'imgs/n86.jpg', 87:'imgs/n87.jpg',
@@ -973,7 +972,7 @@ const imgMap = {
   322:'imgs/comedor-madera-gris.jpg',
   306:'imgs/silla-bari-1.jpg',
   307:'imgs/silla-vogue.jpg',
-  325:['imgs/silla-class.jpg','imgs/silla-class-2.jpg'],
+  325:'imgs/silla-class-2.jpg',
   300:'imgs/sill-cami.jpg',
   302:'imgs/sill-solana.jpg',
   303:'imgs/sill-nordico.jpg',
